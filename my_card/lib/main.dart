@@ -11,49 +11,49 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         backgroundColor: Colors.redAccent,
         body: SafeArea(
-          child: Column(
-            verticalDirection: VerticalDirection.down,
-            children: <Widget>[
-              SizedBox (
-                height: 200.0,
-              ),
-              CircleAvatar(
-                radius: 50.0,
-                backgroundImage: AssetImage('images/ironman.jpeg'),
-              ),
-              Text(
-                'Tony Stark',
-                style: TextStyle(
-                  fontFamily: 'Roboto',
-                  fontSize: 40.0,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
-              ),
-              Text(
-                'Super hero',
-                style: TextStyle(
-                  fontFamily: 'Roboto',
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.normal,
-                  color: Colors.white,
-                ),
-              ),
-              Container(
+            child: Column(
+          verticalDirection: VerticalDirection.down,
+          children: <Widget>[
+            SizedBox(
+              height: 200.0,
+            ),
+            CircleAvatar(
+              radius: 50.0,
+              backgroundImage: AssetImage('images/ironman.jpeg'),
+            ),
+            Text(
+              'Tony Stark',
+              style: TextStyle(
+                fontFamily: 'Roboto',
+                fontSize: 40.0,
+                fontWeight: FontWeight.bold,
                 color: Colors.white,
-                margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
-                height: 40.0,
-//                margin: ,
+              ),
+            ),
+            Text(
+              'Super hero',
+              style: TextStyle(
+                fontFamily: 'Roboto',
+                fontSize: 20.0,
+                fontWeight: FontWeight.normal,
+                color: Colors.white,
+              ),
+            ),
+            Card(
+              color: Colors.white,
+              margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
                 child: Row(
                   children: <Widget>[
-                    SizedBox (
+                    SizedBox(
                       width: 10.0,
                     ),
                     Icon(
                       Icons.phone,
                       color: Colors.redAccent,
                     ),
-                    SizedBox (
+                    SizedBox(
                       width: 10.0,
                     ),
                     Text(
@@ -65,21 +65,22 @@ class MyApp extends StatelessWidget {
                   ],
                 ),
               ),
-              Container(
-                color: Colors.white,
-                margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
-                height: 40.0,
-//                margin: ,
+            ),
+            Card(
+              color: Colors.white,
+              margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
                 child: Row(
                   children: <Widget>[
-                    SizedBox (
+                    SizedBox(
                       width: 10.0,
                     ),
                     Icon(
                       Icons.email,
                       color: Colors.redAccent,
                     ),
-                    SizedBox (
+                    SizedBox(
                       width: 10.0,
                     ),
                     Text(
@@ -91,11 +92,10 @@ class MyApp extends StatelessWidget {
                   ],
                 ),
               ),
-            ],
-          )
-        ),
+            ),
+          ],
+        )),
       ),
     );
   }
 }
-
