@@ -1,5 +1,8 @@
+import 'package:bmi_calculator/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+
 
 class IconContent extends StatelessWidget {
 
@@ -22,10 +25,7 @@ class IconContent extends StatelessWidget {
         ),
         Text(
           gender,
-          style: TextStyle(
-            fontSize: 18.0,
-            color: Color(0xFF808E98),
-          ),
+          style: kLabelTextStyle,
         ),
       ],
     );
