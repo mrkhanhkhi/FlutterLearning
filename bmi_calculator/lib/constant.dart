@@ -16,3 +16,24 @@ const kHeightNumberTextStyle = TextStyle(
   fontSize: 50.0,
   fontWeight: FontWeight.w900,
 );
+
+const kcalculateTextStyle = TextStyle(
+  fontSize: 30.0,
+  fontWeight: FontWeight.w900,
+);
+
+const kresultsTextStyle = TextStyle(
+  color: Color(0xFF24D876),
+  fontSize: 22.0,
+  fontWeight: FontWeight.bold,
+);
+
+const kBMITextstyle = TextStyle(
+  fontSize: 100.0,
+  fontWeight: FontWeight.w900,
+);
+
+const kbodyResultTextstyle = TextStyle(
+  fontSize: 20.0,
+  fontWeight: FontWeight.bold,
+);
