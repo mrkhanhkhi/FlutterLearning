@@ -77,7 +77,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     print(e);
                     Common.showAlertDialog(context, 'Error', e.toString());
                     setState(() {
-                      showSpinner = true;
+                      showSpinner = false;
                     });
                   }
                   ;
