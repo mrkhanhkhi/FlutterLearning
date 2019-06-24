@@ -30,11 +30,13 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              Hero(
-                tag: 'logo',
-                child: Container(
-                  height: 200.0,
-                  child: Image.asset('images/logo.png'),
+              Flexible(
+                child: Hero(
+                  tag: 'logo',
+                  child: Container(
+                    height: 200.0,
+                    child: Image.asset('images/logo.png'),
+                  ),
                 ),
               ),
               SizedBox(
@@ -46,7 +48,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   email = value;
                   //Do something with the user input.
                 },
-                decoration: kTextfieldDecoration.copyWith(hintText: 'Enter your email'),
+                decoration:
+                    kTextfieldDecoration.copyWith(hintText: 'Enter your email'),
               ),
               SizedBox(
                 height: 8.0,
@@ -58,7 +61,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   password = value;
                   //Do something with the user input.
                 },
-                decoration: kTextfieldDecoration.copyWith(hintText: 'Enter your password'),
+                decoration: kTextfieldDecoration.copyWith(
+                    hintText: 'Enter your password'),
               ),
               SizedBox(
                 height: 24.0,
@@ -71,10 +75,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     showSpinner = true;
                   });
                   try {
-                  final newUser = await _auth.createUserWithEmailAndPassword(
-                    email: email,
-                    password: password
-                    );
+                    final newUser = await _auth.createUserWithEmailAndPassword(
+                        email: email, password: password);
                     if (newUser != null) {
                       Navigator.pushNamed(context, ChatScreen.id);
                     }
