@@ -62,9 +62,11 @@ class _CategoryState extends State<Category> {
             ),
           ),
 
-          Container(
-            padding: EdgeInsets.only(top: 10, left: 20),
+          Padding(
+            padding: EdgeInsets.all(20),
             child: ListView.builder(
+                scrollDirection: Axis.vertical,
+                shrinkWrap: true,
                 itemCount: types.length,
                 itemBuilder: (BuildContext context, int index) {
                   return ListTile(
