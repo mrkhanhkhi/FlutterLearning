@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class MealModel {
   String q;
   int from;
@@ -68,12 +70,12 @@ class Params {
       this.appId});
 
   Params.fromJson(Map<String, dynamic> json) {
-    if (json['sane'] != null) {
-      sane = new List<Null>();
-      json['sane'].forEach((v) {
-        sane.add(new Null.fromJson(v));
-      });
-    }
+    // if (json['sane'] != null) {
+    //   sane = new List<Null>();
+    //   json['sane'].forEach((v) {
+    //     sane.add(new Null.fromJson(v));
+    //   });
+    // }
     q = json['q'].cast<String>();
     appKey = json['app_key'].cast<String>();
     from = json['from'].cast<String>();
@@ -84,9 +86,9 @@ class Params {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.sane != null) {
-      data['sane'] = this.sane.map((v) => v.toJson()).toList();
-    }
+    // if (this.sane != null) {
+    //   data['sane'] = this.sane.map((v) => v.toJson()).toList();
+    // }
     data['q'] = this.q;
     data['app_key'] = this.appKey;
     data['from'] = this.from;
@@ -132,7 +134,7 @@ class Recipe {
   int yield;
   List<String> dietLabels;
   List<String> healthLabels;
-  List<Null> cautions;
+  List<String> cautions;
   List<String> ingredientLines;
   List<Ingredients> ingredients;
   double calories;
@@ -172,12 +174,13 @@ class Recipe {
     yield = json['yield'];
     dietLabels = json['dietLabels'].cast<String>();
     healthLabels = json['healthLabels'].cast<String>();
-    if (json['cautions'] != null) {
-      cautions = new List<Null>();
-      json['cautions'].forEach((v) {
-        cautions.add(new Null.fromJson(v));
-      });
-    }
+    cautions = json['cautions'].cast<String>();
+    // if (json['cautions'] != null) {
+    //   cautions = new List<Null>();
+    //   json['cautions'].forEach((v) {
+    //     cautions.add(new Null.fromJson(v));
+    //   });
+    // }
     ingredientLines = json['ingredientLines'].cast<String>();
     if (json['ingredients'] != null) {
       ingredients = new List<Ingredients>();
@@ -213,9 +216,10 @@ class Recipe {
     data['yield'] = this.yield;
     data['dietLabels'] = this.dietLabels;
     data['healthLabels'] = this.healthLabels;
-    if (this.cautions != null) {
-      data['cautions'] = this.cautions.map((v) => v.toJson()).toList();
-    }
+    data['cautions'] = this.cautions;
+    // if (this.cautions != null) {
+    //   data['cautions'] = this.cautions.map((v) => v.toJson()).toList();
+    // }
     data['ingredientLines'] = this.ingredientLines;
     if (this.ingredients != null) {
       data['ingredients'] = this.ingredients.map((v) => v.toJson()).toList();
