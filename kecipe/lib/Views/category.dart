@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kecipe/Views/recipe_card.dart';
 
 class Category extends StatefulWidget {
   @override
@@ -6,12 +7,16 @@ class Category extends StatefulWidget {
 }
 
 class _CategoryState extends State<Category> {
-  List<String> types = ['Chicken', 'Healthy', 'Keto', 'Salad', 'Eggs', 'Beef'];
+  List<String> types = ['Chicken', 'Healthy', 'Keto', 'Salad', 'Eggs', 'Beef', 'Breakfast',
+    'Brownie', 'Cookies', 'Desserts', 'Ice Cream', 'Juice', 'Kid', 'Pie', 'Pork', 'Smoothie', 'Steak', 'Vegetarian'];
+  List<String> images = ['chicken.jpeg', 'healthy.jpeg', 'keto.jpeg', 'salad.jpeg', 'eggs.jpeg', 'beef.jpeg', 'breakfast.jpeg',
+    'brownie.jpg', 'cookies.jpeg', 'desserts.jpeg', 'icecream.jpeg', 'juice.jpeg', 'kid.jpg', 'pie.jpeg', 'pork.jpeg', 'smoothie.jpeg', 'steak.jpeg', 'vegetarian.jpg'];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
       body: ListView(
+        scrollDirection: Axis.vertical,
         children: <Widget>[
           Padding(
             padding: EdgeInsets.all(20),
@@ -65,12 +70,15 @@ class _CategoryState extends State<Category> {
           Padding(
             padding: EdgeInsets.all(20),
             child: ListView.builder(
-                scrollDirection: Axis.vertical,
+                physics: const NeverScrollableScrollPhysics(),
+//                scrollDirection: Axis.vertical,
                 shrinkWrap: true,
                 itemCount: types.length,
                 itemBuilder: (BuildContext context, int index) {
-                  return ListTile(
-                    title: Text(types[index]),
+                  return new RecipeCard(
+                    type: types[index],
+                    imageName: images[index],
+                    onFavoriteButtonPressed: (){},
                   );
                 }
             )
