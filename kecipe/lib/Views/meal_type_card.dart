@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:kecipe/common/constant.dart';
-class RecipeCard extends StatelessWidget {
+class MealTypeCard extends StatelessWidget {
   final String type;
   final String imageName;
   final Function onFavoriteButtonPressed;
 
-  RecipeCard(
+  MealTypeCard(
       {@required this.type,
         @required this.imageName,
         @required this.onFavoriteButtonPressed});
@@ -38,6 +38,7 @@ class RecipeCard extends StatelessWidget {
         child: Container(
 //          height: 300,
           child: Card(
+            shape: CircleBorder(),
             child: Stack(
               alignment: Alignment.center,
               children: <Widget>[
