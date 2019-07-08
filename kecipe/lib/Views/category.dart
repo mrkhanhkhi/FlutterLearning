@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kecipe/Views/meal_type_card.dart';
+import 'package:kecipe/Views/recipe_list.dart';
 
 class Category extends StatefulWidget {
   @override
@@ -78,7 +79,12 @@ class _CategoryState extends State<Category> {
                   return new MealTypeCard(
                     type: types[index],
                     imageName: images[index],
-                    onFavoriteButtonPressed: (){},
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) =>RecipeList())
+                      );
+                    },
                   );
                 }
             )

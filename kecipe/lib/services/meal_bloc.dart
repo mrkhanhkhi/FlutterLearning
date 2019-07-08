@@ -8,8 +8,8 @@ class MealBloc {
   final BehaviorSubject<MealModel> _subject =
   BehaviorSubject<MealModel>();
 
-  getMeal() async {
-    MealModel response = await _mealRepository.getMeals();
+  getMeal(String mealType) async {
+    MealModel response = await _mealRepository.getMeals(mealType);
     _subject.sink.add(response);
   }
 

@@ -3,24 +3,15 @@ import 'package:kecipe/common/constant.dart';
 class MealTypeCard extends StatelessWidget {
   final String type;
   final String imageName;
-  final Function onFavoriteButtonPressed;
+  final Function onPressed;
 
   MealTypeCard(
       {@required this.type,
         @required this.imageName,
-        @required this.onFavoriteButtonPressed});
+        @required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
-    RawMaterialButton _buildFavoriteButton() {
-      return RawMaterialButton(
-        constraints: const BoxConstraints(minWidth: 40.0, minHeight: 40.0),
-        onPressed: () => onFavoriteButtonPressed(type),
-        elevation: 2.0,
-        fillColor: Constants.lightBG,
-        shape: CircleBorder(),
-      );
-    }
 
 //    Stack _buildTitleSection() {
 //      return Stack(
@@ -32,7 +23,7 @@ class MealTypeCard extends StatelessWidget {
 //    }
 
     return GestureDetector(
-      onTap: () => print("Tapped!"),
+      onTap: onPressed,
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
         child: Container(
