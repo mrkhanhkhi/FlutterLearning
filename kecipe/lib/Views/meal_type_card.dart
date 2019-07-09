@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kecipe/common/constant.dart';
+
 class MealTypeCard extends StatelessWidget {
   final String type;
   final String imageName;
