@@ -20,12 +20,12 @@ class MealModel {
 
   MealModel.fromJson(Map<String, dynamic> json) {
     q = json['q'];
-    from = json['from'];
-    to = json['to'];
+    from = json['from'].toInt();
+    to = json['to'].toInt();
     params =
         json['params'] != null ? new Params.fromJson(json['params']) : null;
     more = json['more'];
-    count = json['count'];
+    count = json['count'].toInt();
     if (json['hits'] != null) {
       hits = new List<Hits>();
       json['hits'].forEach((v) {
@@ -171,7 +171,7 @@ class Recipe {
     source = json['source'];
     url = json['url'];
     shareAs = json['shareAs'];
-    yield = json['yield'];
+    yield = json['yield'].toInt();
     dietLabels = json['dietLabels'].cast<String>();
     healthLabels = json['healthLabels'].cast<String>();
     cautions = json['cautions'].cast<String>();
@@ -188,9 +188,9 @@ class Recipe {
         ingredients.add(new Ingredients.fromJson(v));
       });
     }
-    calories = json['calories'];
-    totalWeight = json['totalWeight'];
-    totalTime = json['totalTime'];
+    calories = json['calories'].toDouble();
+    totalWeight = json['totalWeight'].toDouble();
+    totalTime = json['totalTime'].toInt();
     totalNutrients = json['totalNutrients'] != null
         ? new TotalNutrients.fromJson(json['totalNutrients'])
         : null;
@@ -254,7 +254,7 @@ class Ingredients {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['text'] = this.text;
-    data['weight'] = this.weight;
+    data['weight'] = this.weight.toDouble();
     return data;
   }
 }
@@ -471,7 +471,7 @@ class ENERCKCAL {
 
   ENERCKCAL.fromJson(Map<String, dynamic> json) {
     label = json['label'];
-    quantity = json['quantity'];
+    quantity = json['quantity'].toDouble();
     unit = json['unit'];
   }
 
@@ -493,7 +493,7 @@ class FAT {
 
   FAT.fromJson(Map<String, dynamic> json) {
     label = json['label'];
-    quantity = json['quantity'];
+    quantity = json['quantity'].toDouble();
     unit = json['unit'];
   }
 
@@ -515,7 +515,7 @@ class FASAT {
 
   FASAT.fromJson(Map<String, dynamic> json) {
     label = json['label'];
-    quantity = json['quantity'];
+    quantity = json['quantity'].toDouble();
     unit = json['unit'];
   }
 
@@ -537,7 +537,7 @@ class FATRN {
 
   FATRN.fromJson(Map<String, dynamic> json) {
     label = json['label'];
-    quantity = json['quantity'];
+    quantity = json['quantity'].toDouble();
     unit = json['unit'];
   }
 
@@ -559,7 +559,7 @@ class FAMS {
 
   FAMS.fromJson(Map<String, dynamic> json) {
     label = json['label'];
-    quantity = json['quantity'];
+    quantity = json['quantity'].toDouble();
     unit = json['unit'];
   }
 
@@ -581,7 +581,7 @@ class FAPU {
 
   FAPU.fromJson(Map<String, dynamic> json) {
     label = json['label'];
-    quantity = json['quantity'];
+    quantity = json['quantity'].toDouble();
     unit = json['unit'];
   }
 
@@ -603,7 +603,7 @@ class CHOCDF {
 
   CHOCDF.fromJson(Map<String, dynamic> json) {
     label = json['label'];
-    quantity = json['quantity'];
+    quantity = json['quantity'].toDouble();
     unit = json['unit'];
   }
 
@@ -625,7 +625,7 @@ class FIBTG {
 
   FIBTG.fromJson(Map<String, dynamic> json) {
     label = json['label'];
-    quantity = json['quantity'];
+    quantity = json['quantity'].toDouble();
     unit = json['unit'];
   }
 
@@ -647,7 +647,7 @@ class SUGAR {
 
   SUGAR.fromJson(Map<String, dynamic> json) {
     label = json['label'];
-    quantity = json['quantity'];
+    quantity = json['quantity'].toDouble();
     unit = json['unit'];
   }
 
@@ -669,7 +669,7 @@ class PROCNT {
 
   PROCNT.fromJson(Map<String, dynamic> json) {
     label = json['label'];
-    quantity = json['quantity'];
+    quantity = json['quantity'].toDouble();
     unit = json['unit'];
   }
 
@@ -691,7 +691,7 @@ class CHOLE {
 
   CHOLE.fromJson(Map<String, dynamic> json) {
     label = json['label'];
-    quantity = json['quantity'];
+    quantity = json['quantity'].toDouble();
     unit = json['unit'];
   }
 
@@ -713,7 +713,7 @@ class NA {
 
   NA.fromJson(Map<String, dynamic> json) {
     label = json['label'];
-    quantity = json['quantity'];
+    quantity = json['quantity'].toDouble();
     unit = json['unit'];
   }
 
@@ -735,7 +735,7 @@ class CA {
 
   CA.fromJson(Map<String, dynamic> json) {
     label = json['label'];
-    quantity = json['quantity'];
+    quantity = json['quantity'].toDouble();
     unit = json['unit'];
   }
 
@@ -757,7 +757,7 @@ class MG {
 
   MG.fromJson(Map<String, dynamic> json) {
     label = json['label'];
-    quantity = json['quantity'];
+    quantity = json['quantity'].toDouble();
     unit = json['unit'];
   }
 
@@ -779,7 +779,7 @@ class K {
 
   K.fromJson(Map<String, dynamic> json) {
     label = json['label'];
-    quantity = json['quantity'];
+    quantity = json['quantity'].toDouble();
     unit = json['unit'];
   }
 
@@ -801,7 +801,7 @@ class FE {
 
   FE.fromJson(Map<String, dynamic> json) {
     label = json['label'];
-    quantity = json['quantity'];
+    quantity = json['quantity'].toDouble();
     unit = json['unit'];
   }
 
@@ -823,7 +823,7 @@ class ZN {
 
   ZN.fromJson(Map<String, dynamic> json) {
     label = json['label'];
-    quantity = json['quantity'];
+    quantity = json['quantity'].toDouble();
     unit = json['unit'];
   }
 
@@ -845,7 +845,7 @@ class P {
 
   P.fromJson(Map<String, dynamic> json) {
     label = json['label'];
-    quantity = json['quantity'];
+    quantity = json['quantity'].toDouble();
     unit = json['unit'];
   }
 
@@ -867,7 +867,7 @@ class VITARAE {
 
   VITARAE.fromJson(Map<String, dynamic> json) {
     label = json['label'];
-    quantity = json['quantity'];
+    quantity = json['quantity'].toDouble();
     unit = json['unit'];
   }
 
@@ -889,7 +889,7 @@ class VITC {
 
   VITC.fromJson(Map<String, dynamic> json) {
     label = json['label'];
-    quantity = json['quantity'];
+    quantity = json['quantity'].toDouble();
     unit = json['unit'];
   }
 
@@ -911,7 +911,7 @@ class THIA {
 
   THIA.fromJson(Map<String, dynamic> json) {
     label = json['label'];
-    quantity = json['quantity'];
+    quantity = json['quantity'].toDouble();
     unit = json['unit'];
   }
 
@@ -933,7 +933,7 @@ class RIBF {
 
   RIBF.fromJson(Map<String, dynamic> json) {
     label = json['label'];
-    quantity = json['quantity'];
+    quantity = json['quantity'].toDouble();
     unit = json['unit'];
   }
 
@@ -955,7 +955,7 @@ class NIA {
 
   NIA.fromJson(Map<String, dynamic> json) {
     label = json['label'];
-    quantity = json['quantity'];
+    quantity = json['quantity'].toDouble();
     unit = json['unit'];
   }
 
@@ -977,7 +977,7 @@ class VITB6A {
 
   VITB6A.fromJson(Map<String, dynamic> json) {
     label = json['label'];
-    quantity = json['quantity'];
+    quantity = json['quantity'].toDouble();
     unit = json['unit'];
   }
 
@@ -999,7 +999,7 @@ class FOLDFE {
 
   FOLDFE.fromJson(Map<String, dynamic> json) {
     label = json['label'];
-    quantity = json['quantity'];
+    quantity = json['quantity'].toDouble();
     unit = json['unit'];
   }
 
@@ -1021,7 +1021,7 @@ class FOLFD {
 
   FOLFD.fromJson(Map<String, dynamic> json) {
     label = json['label'];
-    quantity = json['quantity'];
+    quantity = json['quantity'].toDouble();
     unit = json['unit'];
   }
 
@@ -1043,7 +1043,7 @@ class VITB12 {
 
   VITB12.fromJson(Map<String, dynamic> json) {
     label = json['label'];
-    quantity = json['quantity'];
+    quantity = json['quantity'].toDouble();
     unit = json['unit'];
   }
 
@@ -1065,7 +1065,7 @@ class VITD {
 
   VITD.fromJson(Map<String, dynamic> json) {
     label = json['label'];
-    quantity = json['quantity'];
+    quantity = json['quantity'].toDouble();
     unit = json['unit'];
   }
 
@@ -1087,7 +1087,7 @@ class TOCPHA {
 
   TOCPHA.fromJson(Map<String, dynamic> json) {
     label = json['label'];
-    quantity = json['quantity'];
+    quantity = json['quantity'].toDouble();
     unit = json['unit'];
   }
 
@@ -1109,7 +1109,7 @@ class VITK1 {
 
   VITK1.fromJson(Map<String, dynamic> json) {
     label = json['label'];
-    quantity = json['quantity'];
+    quantity = json['quantity'].toDouble();
     unit = json['unit'];
   }
 
@@ -1319,9 +1319,9 @@ class Digest {
     label = json['label'];
     tag = json['tag'];
     schemaOrgTag = json['schemaOrgTag'];
-    total = json['total'];
+    total = json['total'].toDouble();
     hasRDI = json['hasRDI'];
-    daily = json['daily'];
+    daily = json['daily'].toDouble();
     unit = json['unit'];
     if (json['sub'] != null) {
       sub = new List<Sub>();
@@ -1369,9 +1369,9 @@ class Sub {
     label = json['label'];
     tag = json['tag'];
     schemaOrgTag = json['schemaOrgTag'];
-    total = json['total'];
+    total = json['total'].toDouble();
     hasRDI = json['hasRDI'];
-    daily = json['daily'];
+    daily = json['daily'].toDouble();
     unit = json['unit'];
   }
 

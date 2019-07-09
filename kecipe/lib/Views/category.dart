@@ -82,7 +82,7 @@ class _CategoryState extends State<Category> {
                     onPressed: () {
                       Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) =>RecipeList())
+                          MaterialPageRoute(builder: (context) =>RecipeList(type: types[index],))
                       );
                     },
                   );
