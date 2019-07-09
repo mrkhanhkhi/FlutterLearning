@@ -100,24 +100,24 @@ class Params {
 }
 
 class Hits {
-  List<Recipe> recipes;
+  Recipe recipe;
   bool bookmarked;
   bool bought;
 
-  Hits({this.recipes, this.bookmarked, this.bought});
+  Hits({this.recipe, this.bookmarked, this.bought});
 
   Hits.fromJson(Map<String, dynamic> json) {
-    var list = json['recipe'] as List;
-    recipes = list.map((i) => Recipe.fromJson(i)).toList();
+    recipe =
+        json['recipe'] != null ? new Recipe.fromJson(json['recipe']) : null;
     bookmarked = json['bookmarked'];
     bought = json['bought'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-//    if (this.recipes != null) {
-//      data['recipe'] = this.recipes.toJson();
-//    }
+    if (this.recipe != null) {
+      data['recipe'] = this.recipe.toJson();
+    }
     data['bookmarked'] = this.bookmarked;
     data['bought'] = this.bought;
     return data;

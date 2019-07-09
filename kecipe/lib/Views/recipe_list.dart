@@ -31,7 +31,7 @@ class _RecipeListState extends State<RecipeList> {
           if (snapshot.error != null && snapshot.error.hashCode > 0) {
             return _buildErrorWidget(snapshot.error);
           }
-          return buildRecipeListView(snapshot.data.hits.);
+          return buildRecipeListView(snapshot.data.hits);
         } else if (snapshot.hasError) {
           return _buildErrorWidget(snapshot.error);
         } else {
@@ -59,23 +59,17 @@ class _RecipeListState extends State<RecipeList> {
     ));
   }
 
-  Widget buildRecipeListView(List<Hits> hits, int index) {
+  Widget buildRecipeListView(List<Hits> hits) {
 
     return Padding(
       padding: EdgeInsets.all(5.0),
-      child: GridView.count(
-        crossAxisCount: 2,
-        childAspectRatio: 1.0,
-        mainAxisSpacing: 4.0,
-        crossAxisSpacing: 4.0,
-        children: <Widget>[
-          RecipeCard(
-              recipe: hits[index].recipes,
-              onPressed: () {
-                print("Pressed");
-              }),
-        ],
-      ),
+      child: GridView.builder(
+          shrinkWrap: true,
+          itemCount: hits.length,
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,childAspectRatio: 0.6),
+          itemBuilder: (BuildContext context, int index){
+
+          })
     );
   }
 
