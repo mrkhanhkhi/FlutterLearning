@@ -22,6 +22,8 @@ class RecipeCard extends StatelessWidget {
           child: Container(
             alignment: Alignment.center,
             child: Column(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Flexible(
@@ -35,9 +37,14 @@ class RecipeCard extends StatelessWidget {
                   padding: EdgeInsets.all(10.0),
                   child: Text(
                     recipe.label,
+                    style: TextStyle(
+                      fontSize: 15.0,
+                      color: Colors.black,
+                    ),
                     maxLines: 1,
                     softWrap: true,
                     textAlign: TextAlign.center,
+
                   ),
                 ),
               ],

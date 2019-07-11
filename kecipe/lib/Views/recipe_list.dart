@@ -61,15 +61,30 @@ class _RecipeListState extends State<RecipeList> {
 
   Widget buildRecipeListView(List<Hits> hits) {
 
-    return Padding(
-      padding: EdgeInsets.all(5.0),
-      child: GridView.builder(
-          shrinkWrap: true,
-          itemCount: hits.length,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,childAspectRatio: 0.6),
-          itemBuilder: (BuildContext context, int index){
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Recipe List'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: GridView.builder(
+            shrinkWrap: true,
+            itemCount: hits.length,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,childAspectRatio: 0.6),
+            itemBuilder: (BuildContext context, int index){
+              return RecipeCard(recipe: hits[index].recipe, onPressed: () {
 
-          })
+                }
+              );
+            }),
+      ),
+    );
+  }
+
+  Widget displayItem(String key, String value){
+    return Padding(
+      padding: const EdgeInsets.all(2.0),
+      child: Text('$key : $value', style: TextStyle(fontSize: 11),),
     );
   }
 
