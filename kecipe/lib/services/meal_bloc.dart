@@ -5,8 +5,8 @@ import 'package:rxdart/rxdart.dart';
 
 class MealBloc {
   final MealRepository _mealRepository = MealRepository();
-  final BehaviorSubject<MealModel> _subject =
-  BehaviorSubject<MealModel>();
+  final PublishSubject<MealModel> _subject =
+  PublishSubject<MealModel>();
 
   getMeal(String mealType) async {
     MealModel response = await _mealRepository.getMeals(mealType);
@@ -17,7 +17,7 @@ class MealBloc {
     _subject.close();
   }
 
-  BehaviorSubject<MealModel> get subject => _subject;
+  PublishSubject<MealModel> get subject => _subject;
 
 }
 
