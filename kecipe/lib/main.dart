@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:kecipe/Views/category.dart';
 import 'package:kecipe/Views/home_screen.dart';
 import 'package:kecipe/common/constant.dart';
+import 'package:kecipe/Views/recipe_list.dart';
+import 'package:gradient_app_bar/gradient_app_bar.dart';
 
 void main() => runApp(MyApp());
 
@@ -21,6 +23,9 @@ class _MyAppState extends State<MyApp> {
       title: 'Kecipe',
       theme: isDark ? Constants.darkTheme : Constants.lightTheme,
       home: HomeScreen(),
+      routes: <String, WidgetBuilder> {
+        '/recipe_list': (BuildContext context) => new RecipeList(),
+      }
     );
   }
 }

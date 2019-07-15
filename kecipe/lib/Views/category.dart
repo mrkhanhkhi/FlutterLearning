@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kecipe/Views/meal_type_card.dart';
 import 'package:kecipe/Views/recipe_list.dart';
+import 'package:kecipe/common/constant.dart';
 
 class Category extends StatefulWidget {
   @override
@@ -15,7 +16,13 @@ class _CategoryState extends State<Category> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Text('Category'
+        , style: TextStyle(
+            color: Constants.darkBG
+          ),),
+        backgroundColor: Constants.lightPrimary,
+      ),
       body: ListView(
         scrollDirection: Axis.vertical,
         children: <Widget>[
@@ -80,9 +87,10 @@ class _CategoryState extends State<Category> {
                     type: types[index],
                     imageName: images[index],
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) =>RecipeList(type: types[index],))
+                      Navigator.of(context).push(
+                          MaterialPageRoute(builder: (BuildContext context) {return RecipeList(type: types[index]);
+                            }
+                          )
                       );
                     },
                   );

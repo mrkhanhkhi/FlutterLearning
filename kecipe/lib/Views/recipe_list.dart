@@ -4,6 +4,7 @@ import 'package:kecipe/services/meal_repository.dart';
 import 'package:kecipe/services/meal_api_provider.dart';
 import 'package:kecipe/services/meal_bloc.dart';
 import 'package:kecipe/Views/recipe_card.dart';
+import 'package:kecipe/common/constant.dart';
 
 class RecipeList extends StatefulWidget {
   final String type;
@@ -42,11 +43,21 @@ class _RecipeListState extends State<RecipeList> {
   }
 
   Widget _buildLoadingWidget() {
-    return Center(
-        child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [CircularProgressIndicator()],
-    ));
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('RecipeList'),
+        backgroundColor: Constants.lightPrimary,
+      ),
+      body: Center(
+        child: new CircularProgressIndicator(),
+      ),
+    );
+//    return Container(
+//      color: Colors.transparent,
+//      child: new Center(
+//        child: new CircularProgressIndicator(),
+//      ),
+//    );
   }
 
   Widget _buildErrorWidget(String error) {

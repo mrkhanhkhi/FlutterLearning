@@ -32,54 +32,78 @@ class _HomeScreenState extends State<HomeScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             SizedBox(width:7),
-            IconButton(
-              icon: Icon(
-                Icons.home,
-                size: 24.0,
-              ),
-              color: _page == 0
-                  ? Theme.of(context).accentColor
-                  : Colors.blueGrey[300],
-              onPressed: ()=>_pageController.jumpToPage(0),
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                IconButton(
+                  icon: Icon(
+                    Icons.home,
+                    size: 24.0,
+                  ),
+                  color: _page == 0
+                      ? Theme.of(context).accentColor
+                      : Colors.blueGrey[300],
+                  onPressed: ()=>_pageController.jumpToPage(0),
+                ),
+                Text('Home')
+              ],
             ),
 
-            IconButton(
-              icon:Icon(
-                Icons.favorite,
-                size: 24.0,
-              ),
-              color: _page == 1
-                  ? Theme.of(context).accentColor
-                  : Colors.blueGrey[300],
-              onPressed: ()=>_pageController.jumpToPage(1),
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                IconButton(
+                  icon:Icon(
+                    Icons.favorite,
+                    size: 24.0,
+                  ),
+                  color: _page == 1
+                      ? Theme.of(context).accentColor
+                      : Colors.blueGrey[300],
+                  onPressed: ()=>_pageController.jumpToPage(1),
+                ),
+                Text('Favorite')
+              ],
             ),
 
-            IconButton(
-              icon: Icon(
-                Icons.mode_comment,
-                size: 24.0,
-              ),
-              color: _page == 2
-                  ? Theme.of(context).accentColor
-                  : Colors.blueGrey[300],
-              onPressed: ()=>_pageController.jumpToPage(2),
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                IconButton(
+                  icon: Icon(
+                    Icons.mode_comment,
+                    size: 24.0,
+                  ),
+                  color: _page == 2
+                      ? Theme.of(context).accentColor
+                      : Colors.blueGrey[300],
+                  onPressed: ()=>_pageController.jumpToPage(2),
+                ),
+                Text('Notifications')
+              ],
             ),
 
-            IconButton(
-              icon: Icon(
-                Icons.person,
-                size: 24.0,
-              ),
-              color: _page == 3
-                  ? Theme.of(context).accentColor
-                  : Colors.blueGrey[300],
-              onPressed: ()=>_pageController.jumpToPage(3),
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                IconButton(
+                  icon: Icon(
+                    Icons.settings,
+                    size: 24.0,
+                  ),
+                  color: _page == 3
+                      ? Theme.of(context).accentColor
+                      : Colors.blueGrey[300],
+                  onPressed: ()=>_pageController.jumpToPage(3),
+                ),
+                Text('Setting')
+              ],
             ),
 
             SizedBox(width:7),
           ],
         ),
-        color: Theme.of(context).primaryColor,
+        color: Colors.white,
 
       ),
     );

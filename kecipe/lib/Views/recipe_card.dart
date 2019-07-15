@@ -47,28 +47,72 @@ class RecipeCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text(
-                    recipe.label,
-                    style: TextStyle(
-                      fontSize: 20.0,
-                      color: Color(0xFFD73C29),
+                  Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      recipe.label,
+                      style: TextStyle(
+                        fontSize: 20.0,
+                        color: Constants.lightAccent,
                       fontWeight: FontWeight.bold,
+                      ),
+                      maxLines: 1,
+                      softWrap: true,
+                      textAlign: TextAlign.center,
                     ),
-                    maxLines: 1,
-                    softWrap: true,
-                    textAlign: TextAlign.center,
                   ),
                   SizedBox(height: 5.0),
-                  Text(
-                    'Calories: ${recipe.calories.round().toString()}',
-                    style: TextStyle(
-                      fontSize: 20.0,
-                      color: Color(0xFFD73C29),
-                      fontWeight: FontWeight.bold,
-                    ),
-                    maxLines: 2,
-                    softWrap: true,
-                    textAlign: TextAlign.center,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      Spacer(
+                        flex: 20,
+                      ),
+                      Icon(
+                        Icons.lightbulb_outline,
+                        size: 24.0,
+                      ),
+                      Spacer(),
+                      Text(
+                        '${recipe.calories.round().toString()} kcal',
+                        style: TextStyle(
+                          fontSize: 20.0,
+                          color: Constants.lightAccent,
+//                          fontWeight: FontWeight.bold,
+                        ),
+                        maxLines: 2,
+                        softWrap: true,
+                        textAlign: TextAlign.center,
+                      ),
+                      Spacer(flex: 20),
+                    ],
+                  ),
+                  SizedBox(height: 5.0),
+                  Row(
+                    children: <Widget>[
+                      Spacer(
+                        flex: 20,
+                      ),
+                      Icon(
+                        Icons.restaurant,
+                        size: 20.0,
+                      ),
+                      Spacer(),
+                      Text(
+                        '${recipe.yield.toString()} servings',
+                        style: TextStyle(
+                          fontSize: 20.0,
+                          color: Constants.lightAccent,
+//                          fontWeight: FontWeight.bold,
+                        ),
+                        maxLines: 2,
+                        softWrap: true,
+                        textAlign: TextAlign.center,
+                      ),
+                      Spacer(
+                        flex: 20,
+                      ),
+                    ],
                   ),
                 ],
               ),
