@@ -74,19 +74,13 @@ class _RecipeDetailState extends State<RecipeDetail> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => WebviewScaffold(
-                              url: widget.recipe.url,
-                              appBar: new AppBar(
-                                title: Text(widget.recipe.label),
+                            builder: (context) => Scaffold(
+                              appBar: AppBar(
+                                title: Text('Flutter WebView example'),
                               ),
-                              withZoom: true,
-                              withLocalStorage: true,
-                              hidden: true,
-                              initialChild: Container(
-                                color: Colors.white,
-                                child: const Center(
-                                  child: Text('Waiting.....'),
-                                ),
+                              body: WebView(
+                                initialUrl: widget.recipe.url,
+                                javascriptMode: JavascriptMode.unrestricted,
                               ),
                             ),
                         ));
