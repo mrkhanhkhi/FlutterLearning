@@ -82,7 +82,7 @@ class _RecipeDetailState extends State<RecipeDetail>
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(50.0, 50.0, 50.0, 50.0),
+                padding: const EdgeInsets.fromLTRB(50.0, 80.0, 50.0, 20.0),
                 child: FloatingActionButton.extended(
                   elevation: 4.0,
                   icon: const Icon(Icons.search),
@@ -112,32 +112,6 @@ class _RecipeDetailState extends State<RecipeDetail>
   }
 }
 
-class WebViewContainer extends StatefulWidget {
-  final url;
-  WebViewContainer(this.url);
-  @override
-  createState() => _WebViewContainerState(this.url);
-}
-
-class _WebViewContainerState extends State<WebViewContainer> {
-  var _url;
-  final _key = UniqueKey();
-  _WebViewContainerState(this._url);
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(),
-        body: Column(
-          children: [
-            Expanded(
-                child: WebView(
-                    key: _key,
-                    javascriptMode: JavascriptMode.unrestricted,
-                    initialUrl: _url))
-          ],
-        ));
-  }
-}
 
 class IngredientsView extends StatelessWidget {
   final List<String> ingredients;

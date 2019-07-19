@@ -15,7 +15,7 @@ class RecipeNutrition extends StatelessWidget {
     return Container(
       child: Column(
         children: <Widget>[
-          NutritionPieChart(recipe: recipe),
+          Flexible(child: NutritionPieChart(recipe: recipe)),
         ],
       ),
     );
