@@ -6,6 +6,9 @@ import 'package:kecipe/services/meal_bloc.dart';
 import 'package:kecipe/Views/recipe_card.dart';
 import 'package:kecipe/common/constant.dart';
 import 'package:kecipe/Views/recipe_detail.dart';
+import 'package:rxdart/rxdart.dart';
+
+
 
 class RecipeList extends StatefulWidget {
   final String type;
@@ -72,7 +75,7 @@ class _RecipeListState extends State<RecipeList> {
   }
 
   Widget buildRecipeListView(List<Hits> hits) {
-
+    var bloc = Provider.of<CartBloc>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text('Recipe List'),
@@ -84,13 +87,9 @@ class _RecipeListState extends State<RecipeList> {
             itemCount: hits.length,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,childAspectRatio: 0.6),
             itemBuilder: (BuildContext context, int index){
-              return RecipeCard(recipe: hits[index].recipe, onPressed: () {
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (BuildContext context) {return RecipeDetail(recipe: hits[index].recipe,);
-                    }
-                    )
-                );
-                }
+              return RecipeCard(recipe: hits[index].recipe, inFavorites: false, onFavoriteButtonPressed: () {
+
+                },
               );
             }),
       ),

@@ -2,20 +2,44 @@ import 'package:flutter/material.dart';
 import 'package:kecipe/common/constant.dart';
 import 'package:kecipe/models/meal_model.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:kecipe/Views/recipe_detail.dart';
 
 class RecipeCard extends StatelessWidget {
 
   final Recipe recipe;
-  final Function onPressed;
+  final Function onFavoriteButtonPressed;
+  final bool inFavorites;
 
   RecipeCard(
       {@required this.recipe,
-        @required this.onPressed});
+     @required this.inFavorites,
+        @required this.onFavoriteButtonPressed});
 
   @override
   Widget build(BuildContext context) {
+
+    RawMaterialButton _buildFavoriteButton() {
+      return RawMaterialButton(
+        constraints: const BoxConstraints(minWidth: 40.0, minHeight: 40.0),
+        onPressed: () => onFavoriteButtonPressed(recipe.label),
+        child: Icon(
+          // Conditional expression:
+          // show "favorite" icon or "favorite border" icon depending on widget.inFavorites:
+          inFavorites == true ? Icons.favorite : Icons.favorite_border,
+        ),
+        elevation: 2.0,
+        fillColor: Colors.white,
+        shape: CircleBorder(),
+      );
+    }
+
     return GestureDetector(
-      onTap: onPressed,
+      onTap: () =>  Navigator.of(context).push(
+          MaterialPageRoute(builder: (BuildContext context) {
+              return RecipeDetail(recipe: recipe,);
+            }
+          )
+      ),
       child: Card(
         clipBehavior: Clip.antiAlias,
         elevation: 1.0,
@@ -28,18 +52,27 @@ class RecipeCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            AspectRatio(
-              aspectRatio: 18.0 / 12.0,
-              child: CachedNetworkImage(
-                placeholder: (context, url) => new  SizedBox(
-                  child: CircularProgressIndicator(),
-                  height: 20.0,
-                  width: 20.0,
+            Stack(
+              children: <Widget>[
+                AspectRatio(
+                  aspectRatio: 18.0 / 12.0,
+                  child: CachedNetworkImage(
+                    placeholder: (context, url) => new  SizedBox(
+                      child: CircularProgressIndicator(),
+                      height: 20.0,
+                      width: 20.0,
+                    ),
+                    errorWidget: (context, url, error) => new Icon(Icons.error),
+                    imageUrl: recipe.image,
+                    fit: BoxFit.cover,
+                  ),
                 ),
-                errorWidget: (context, url, error) => new Icon(Icons.error),
-                imageUrl: recipe.image,
-                fit: BoxFit.cover,
+                Positioned(
+                  child: _buildFavoriteButton(),
+                  top: 2.0,
+                  right: 2.0,
                 ),
+              ],
             ),
             SizedBox(height: 5.0),
             new Padding(

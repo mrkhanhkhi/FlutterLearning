@@ -45,7 +45,6 @@ class _HomeScreenState extends State<HomeScreen> {
                       : Colors.blueGrey[300],
                   onPressed: ()=>_pageController.jumpToPage(0),
                 ),
-                Text('Home')
               ],
             ),
 
@@ -62,7 +61,6 @@ class _HomeScreenState extends State<HomeScreen> {
                       : Colors.blueGrey[300],
                   onPressed: ()=>_pageController.jumpToPage(1),
                 ),
-                Text('Favorite')
               ],
             ),
 
@@ -79,7 +77,6 @@ class _HomeScreenState extends State<HomeScreen> {
                       : Colors.blueGrey[300],
                   onPressed: ()=>_pageController.jumpToPage(2),
                 ),
-                Text('Notifications')
               ],
             ),
 
@@ -96,7 +93,6 @@ class _HomeScreenState extends State<HomeScreen> {
                       : Colors.blueGrey[300],
                   onPressed: ()=>_pageController.jumpToPage(3),
                 ),
-                Text('Setting')
               ],
             ),
 
