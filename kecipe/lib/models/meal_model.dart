@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-class MealModel {
+class RecipeModel {
   String q;
   int from;
   int to;
@@ -9,7 +9,7 @@ class MealModel {
   int count;
   List<Hits> hits;
 
-  MealModel(
+  RecipeModel(
       {this.q,
       this.from,
       this.to,
@@ -18,7 +18,7 @@ class MealModel {
       this.count,
       this.hits});
 
-  MealModel.fromJson(Map<String, dynamic> json) {
+  RecipeModel.fromJson(Map<String, dynamic> json) {
     q = json['q'];
     from = json['from'].toInt();
     to = json['to'].toInt();

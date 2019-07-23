@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 
-const kAppID = '4b1a3bb6';
-const kAppKey = 'cf1581846a251a0651e0a46c56af2a16';
+
 class Constants {
 
   static Color lightPrimary = Color(0xfffcfcff);
