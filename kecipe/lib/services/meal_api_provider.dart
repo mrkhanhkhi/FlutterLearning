@@ -6,7 +6,7 @@ class MealApiProvider {
   final Dio _dio = Dio();
 
   Future<MealModel> getMeals(String mealType) async {
-    final String _endpoint = "https://api.edamam.com/search?q=$mealType&app_id=$kAppID&app_key=$kAppKey&from=0&to=100&calories=0-500";
+    final String _endpoint = "https://api.edamam.com/search?q=$mealType&app_id=$kAppID&app_key=$kAppKey&from=0&to=100&calories=0-3000";
     try {
       Response response = await _dio.get(_endpoint);
       return MealModel.fromJson(response.data);

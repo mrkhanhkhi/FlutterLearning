@@ -4,6 +4,10 @@ import 'package:kecipe/Views/home_screen.dart';
 import 'package:kecipe/common/constant.dart';
 import 'package:kecipe/Views/recipe_list.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
+import 'package:kecipe/services/global_bloc.dart';
+import 'package:kecipe/services/meal_favorite_bloc.dart';
+import 'package:provider/provider.dart';
+import 'package:kecipe/services/bloc_provider.dart';
 
 void main() => runApp(MyApp());
 
@@ -18,14 +22,12 @@ class _MyAppState extends State<MyApp> {
   bool isDark = false;
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Kecipe',
-      theme: isDark ? Constants.darkTheme : Constants.lightTheme,
-      home: HomeScreen(),
-      routes: <String, WidgetBuilder> {
-        '/recipe_list': (BuildContext context) => new RecipeList(),
-      }
-    );
+    return BlocProvider<GlobalBloc>(
+      child:   MaterialApp(
+        title: 'Flutter Shopping Cart Demo',
+        theme: isDark ? Constants.darkTheme : Constants.lightTheme,
+        home: HomeScreen(),
+        ), bloc: GlobalBloc(),
+      );
   }
 }

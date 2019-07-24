@@ -2,20 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:kecipe/Views/meal_type_card.dart';
 import 'package:kecipe/Views/recipe_list.dart';
 import 'package:kecipe/common/constant.dart';
+import 'package:kecipe/services/global_bloc.dart';
 
-class Category extends StatefulWidget {
+class Category extends StatelessWidget {
+  const Category({Key key}) : super(key: key);
+  
   @override
-  _CategoryState createState() => _CategoryState();
-}
-
-class _CategoryState extends State<Category> {
-  List<String> types = ['Chicken', 'Healthy', 'Keto', 'Salad', 'Eggs', 'Beef', 'Breakfast',
+  Widget build(BuildContext context) {
+    List<String> types = ['Chicken', 'Healthy', 'Keto', 'Salad', 'Eggs', 'Beef', 'Breakfast',
     'Brownie', 'Cookies', 'Desserts', 'Ice Cream', 'Juice', 'Kid', 'Pie', 'Pork', 'Smoothie', 'Steak', 'Vegetarian'];
   List<String> images = ['chicken.jpeg', 'healthy.jpeg', 'keto.jpeg', 'salad.jpeg', 'eggs.jpeg', 'beef.jpeg', 'breakfast.jpeg',
     'brownie.jpg', 'cookies.jpeg', 'desserts.jpeg', 'icecream.jpeg', 'juice.jpeg', 'kid.jpg', 'pie.jpeg', 'pork.jpeg', 'smoothie.jpeg', 'steak.jpeg', 'vegetarian.jpg'];
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
+    return Container(
+      child: Scaffold(
       appBar: AppBar(
         title: Text('Category'
         , style: TextStyle(
@@ -99,6 +98,21 @@ class _CategoryState extends State<Category> {
           )
         ],
       ),
+    );,
     );
   }
 }
+
+// class Category extends StatefulWidget {
+//   @override
+//   _CategoryState createState() => _CategoryState();
+// }
+
+// class _CategoryState extends State<Category> {
+  
+//   @override
+//   Widget build(BuildContext context) {
+    
+//     return 
+//   }
+// }

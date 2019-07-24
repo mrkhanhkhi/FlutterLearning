@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:kecipe/models/meal_model.dart';
+import 'package:kecipe/services/meal_bloc.dart';
 import 'package:kecipe/services/meal_repository.dart';
 import 'package:kecipe/services/meal_api_provider.dart';
-import 'package:kecipe/services/meal_bloc.dart';
 import 'package:kecipe/Views/recipe_card.dart';
 import 'package:kecipe/common/constant.dart';
 import 'package:kecipe/Views/recipe_detail.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:provider/provider.dart';
+import 'package:kecipe/services/meal_favorite_bloc.dart';
+import 'package:kecipe/services/favorite_bloc.dart';
 
 
 
@@ -23,14 +26,14 @@ class _RecipeListState extends State<RecipeList> {
   @override
   void initState() {
     super.initState();
-    bloc.getMeal(widget.type);
+    mealBloc.getMeal(widget.type);
     print(widget.type);
   }
 
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<MealModel>(
-      stream: bloc.subject.stream,
+      stream: mealBloc.subject.stream,
       builder: (context, AsyncSnapshot<MealModel> snapshot) {
         if (snapshot.hasData) {
           if (snapshot.error != null && snapshot.error.hashCode > 0) {
@@ -75,7 +78,6 @@ class _RecipeListState extends State<RecipeList> {
   }
 
   Widget buildRecipeListView(List<Hits> hits) {
-    var bloc = Provider.of<CartBloc>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text('Recipe List'),
@@ -88,7 +90,7 @@ class _RecipeListState extends State<RecipeList> {
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,childAspectRatio: 0.6),
             itemBuilder: (BuildContext context, int index){
               return RecipeCard(recipe: hits[index].recipe, inFavorites: false, onFavoriteButtonPressed: () {
-
+                    bloc.
                 },
               );
             }),

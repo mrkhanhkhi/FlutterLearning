@@ -5,20 +5,36 @@ import 'package:rxdart/rxdart.dart';
 
 class MealBloc {
   final MealRepository _mealRepository = MealRepository();
-  final PublishSubject<MealModel> _subject =
-  PublishSubject<MealModel>();
+  String type = '';
+
+  PublishSubject<List<Hits>> _hitsController = PublishSubject<List<Hits>>();
+  Sink<List<Hits>> get _inHitList => _hitsController.sink;
+  Stream<List<Hits>> get outHitList => _hitsController.stream;
+
+  // ///
+  // /// Each time we need to render a MovieCard, we will pass its [index]
+  // /// so that, we will be able to check whether it has already been fetched
+  // /// If not, we will automatically fetch the page
+  // ///
+  // PublishSubject<int> _indexController = PublishSubject<int>();
+  // Sink<int> get inMovieIndex => _indexController.sink;
+
+  MealBloc(this.type) {
+    _hitsController.stream
+                    // take some time before jumping into the request (there might be several ones in a row)
+                    .bufferTime(Duration(microseconds: 500))
+                    // and, do not update where this is no need
+                    .where((batch) => batch.isNotEmpty)
+                    .listen(getMeal(type));
+  }
 
   getMeal(String mealType) async {
     MealModel response = await _mealRepository.getMeals(mealType);
-    _subject.sink.add(response);
+    _inHitList.add(response.hits);
   }
 
   dispose() {
-    _subject.close();
+    _hitsController.close();
   }
-
-  PublishSubject<MealModel> get subject => _subject;
-
 }
 
-final bloc = MealBloc();
