@@ -1,9 +1,10 @@
 import 'package:kecipe/models/meal_model.dart';
+import 'package:kecipe/services/bloc_provider.dart';
 import 'package:kecipe/services/meal_api_provider.dart';
 import 'package:kecipe/services/meal_repository.dart';
 import 'package:rxdart/rxdart.dart';
 
-class MealBloc {
+class MealBloc implements BlocBase {
   final MealRepository _mealRepository = MealRepository();
   String type = '';
 
