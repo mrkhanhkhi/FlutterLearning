@@ -24,7 +24,7 @@ class MealFavoriteBloc implements BlocBase {
   ///
   /// Constructor
   ///
-  FavoriteMovieBloc(Recipe recipe){
+  MealFavoriteBloc(Recipe recipe){
     //
     // We are listening to all favorites
     //
@@ -41,5 +41,3 @@ class MealFavoriteBloc implements BlocBase {
   }
 
 }
-
-final bloc = MealFavoriteBloc();

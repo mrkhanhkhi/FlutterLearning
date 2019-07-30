@@ -6,7 +6,6 @@ import 'package:rxdart/rxdart.dart';
 
 class MealBloc implements BlocBase {
   final MealRepository _mealRepository = MealRepository();
-  String type = '';
 
   PublishSubject<List<Hits>> _hitsController = PublishSubject<List<Hits>>();
   Sink<List<Hits>> get _inHitList => _hitsController.sink;
@@ -20,14 +19,14 @@ class MealBloc implements BlocBase {
   // PublishSubject<int> _indexController = PublishSubject<int>();
   // Sink<int> get inMovieIndex => _indexController.sink;
 
-  MealBloc(this.type) {
-    _hitsController.stream
-                    // take some time before jumping into the request (there might be several ones in a row)
-                    .bufferTime(Duration(microseconds: 500))
-                    // and, do not update where this is no need
-                    .where((batch) => batch.isNotEmpty)
-                    .listen(getMeal(type));
-  }
+  // MealBloc(this.type) {
+  //   _hitsController.stream
+  //                   // take some time before jumping into the request (there might be several ones in a row)
+  //                   .bufferTime(Duration(microseconds: 500))
+  //                   // and, do not update where this is no need
+  //                   .where((batch) => batch.isNotEmpty)
+  //                   .listen(getMeal(type));
+  // }
 
   getMeal(String mealType) async {
     MealModel response = await _mealRepository.getMeals(mealType);

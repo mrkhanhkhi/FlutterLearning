@@ -8,7 +8,7 @@
       FavoriteBloc favoriteBloc;
 
       GlobalBloc() {
-        mealBloc = MealBloc('');
+        mealBloc = MealBloc();
         favoriteBloc = FavoriteBloc();
       }
 

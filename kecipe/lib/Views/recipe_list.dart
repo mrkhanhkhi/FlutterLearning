@@ -34,24 +34,24 @@ class RecipeList extends StatefulWidget {
 }
 
 class _RecipeListState extends State<RecipeList> {
+  final mealBloc = MealBloc();
   @override
   void initState() {
     super.initState();
-    // mealBloc.getMeal(widget.type);
-    // print(widget.type);
+    mealBloc.getMeal(widget.type);
+    print(widget.type);
   }
 
   @override
   Widget build(BuildContext context) {
-    final mealBloc = BlocProvider.of<MealBloc>(context);
-    return StreamBuilder<MealModel>(
-      stream: mealBloc.subject.stream,
-      builder: (context, AsyncSnapshot<MealModel> snapshot) {
+    return StreamBuilder<List<Hits>>(
+      stream: mealBloc.outHitList,
+      builder: (context, snapshot) {
         if (snapshot.hasData) {
           if (snapshot.error != null && snapshot.error.hashCode > 0) {
             return _buildErrorWidget(snapshot.error);
           }
-          return buildRecipeListView(snapshot.data.hits);
+          return buildRecipeListView(snapshot.data);
         } else if (snapshot.hasError) {
           return _buildErrorWidget(snapshot.error);
         } else {

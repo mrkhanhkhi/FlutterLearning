@@ -25,16 +25,16 @@ class Category extends StatelessWidget {
       body: ListView(
         scrollDirection: Axis.vertical,
         children: <Widget>[
-          Padding(
-            padding: EdgeInsets.all(20),
-            child: Text(
-              'Choose your meal \ncategory',
-              style: TextStyle(
-                fontSize: 30,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-          ),
+//          Padding(
+//            padding: EdgeInsets.all(20),
+//            child: Text(
+//              'Choose your meal \ncategory',
+//              style: TextStyle(
+//                fontSize: 30,
+//                fontWeight: FontWeight.w600,
+//              ),
+//            ),
+//          ),
           Padding(
             padding: EdgeInsets.all(20),
             child: Container(
@@ -98,7 +98,7 @@ class Category extends StatelessWidget {
           )
         ],
       ),
-    );,
+    )
     );
   }
 }
