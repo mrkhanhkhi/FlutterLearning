@@ -101,8 +101,8 @@ class _RecipeListState extends State<RecipeList> {
             itemCount: hits.length,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,childAspectRatio: 0.6),
             itemBuilder: (BuildContext context, int index){
-              return RecipeCard(recipe: hits[index].recipe, inFavorites: false, onFavoriteButtonPressed: () {
-                    
+              return RecipeCard1(recipe: hits[index].recipe, inFavorites: false, onFavoriteButtonPressed: () {
+
                 },
               );
             }),
