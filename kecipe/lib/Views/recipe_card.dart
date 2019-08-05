@@ -14,13 +14,11 @@ class RecipeCard extends StatefulWidget {
     Key key,
     @required this.recipe,
     @required this.favoritesStream,
-    @required this.onFavoriteButtonPressed,
     @required this.onPressed,
     this.noHero: false,
   }) : super(key: key);
 
   final Recipe recipe;
-  final VoidCallback onFavoriteButtonPressed;
   final VoidCallback onPressed;
   final Stream<List<Recipe>> favoritesStream;
   final bool noHero;
@@ -98,12 +96,18 @@ class _RecipeCardState extends State<RecipeCard> {
                     ),
                     padding: const EdgeInsets.all(4.0),
                     child: InkWell(
-                      child: const Icon(
-                        Icons.favorite,
-                        color: Colors.red,
+                      child: Icon(
+                        snapshot.data
+                            ? Icons.favorite
+                            : Icons.favorite_border,
+                        color: snapshot.data ? Colors.red : Colors.white,
                       ),
                       onTap: () {
-                        favoriteBloc.inRemoveFavorite.add(widget.recipe);
+                        if (snapshot.data) {
+                          favoriteBloc.inRemoveFavorite.add(widget.recipe);
+                        } else {
+                          favoriteBloc.inAddFavorite.add(widget.recipe);
+                        }
                       },
                     )),
               );

@@ -34,7 +34,8 @@ class RecipeList extends StatefulWidget {
 }
 
 class _RecipeListState extends State<RecipeList> {
-  final mealBloc = MealBloc();
+  var mealBloc = MealBloc();
+
   @override
   void initState() {
     super.initState();
@@ -44,6 +45,8 @@ class _RecipeListState extends State<RecipeList> {
 
   @override
   Widget build(BuildContext context) {
+    final FavoriteBloc favoriteBloc = BlocProvider.of<FavoriteBloc>(context);
+    mealBloc = BlocProvider.of<MealBloc>(context);
     return StreamBuilder<List<Hits>>(
       stream: mealBloc.outHitList,
       builder: (context, snapshot) {
@@ -51,7 +54,7 @@ class _RecipeListState extends State<RecipeList> {
           if (snapshot.error != null && snapshot.error.hashCode > 0) {
             return _buildErrorWidget(snapshot.error);
           }
-          return buildRecipeListView(snapshot.data);
+          return buildRecipeListView(snapshot.data, favoriteBloc.outFavorites);
         } else if (snapshot.hasError) {
           return _buildErrorWidget(snapshot.error);
         } else {
@@ -89,7 +92,7 @@ class _RecipeListState extends State<RecipeList> {
     ));
   }
 
-  Widget buildRecipeListView(List<Hits> hits) {
+  Widget buildRecipeListView(List<Hits> hits,  Stream<List<Recipe>> favoritesStream) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Recipe List'),
@@ -101,7 +104,10 @@ class _RecipeListState extends State<RecipeList> {
             itemCount: hits.length,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,childAspectRatio: 0.6),
             itemBuilder: (BuildContext context, int index){
-              return RecipeCard1(recipe: hits[index].recipe, inFavorites: false, onFavoriteButtonPressed: () {
+              return RecipeCard(key: Key('recipe_${hits[index].recipe.label}'),
+                recipe: hits[index].recipe,
+                favoritesStream: favoritesStream,
+                onPressed: () {
 
                 },
               );
