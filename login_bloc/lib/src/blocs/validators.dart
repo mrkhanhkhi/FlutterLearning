@@ -19,5 +19,5 @@ class Validators {
         sink.addError('Password must be at least 5 characters');
       }
     }
-  )
+  );
 }
