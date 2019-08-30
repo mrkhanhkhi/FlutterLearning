@@ -9,7 +9,7 @@ class StoriesBloc {
   // Getters to get streams
   Observable<List<int>> get topIds => _topIds.stream;
   
-
+  
   fetchTopIds() async {
     final ids = await _repository.fetchTopIds();
     _topIds.sink.add(ids);  
