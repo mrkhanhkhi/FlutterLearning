@@ -3,7 +3,7 @@ import 'package:path_provider/path_provider.dart';
 import 'dart:io';
 import 'package:path/path.dart';
 import 'dart:async';
-import '../model/item_model.dart';
+import '../src/model/item_model.dart';
 import 'news_repository.dart';
 
 class NewsDbProvider implements Source, Cache {

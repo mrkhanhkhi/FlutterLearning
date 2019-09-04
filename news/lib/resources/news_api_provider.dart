@@ -1,6 +1,6 @@
 import 'package:http/http.dart' show Client;
 import 'dart:convert';
-import 'package:news/model/item_model.dart';
+import '../src/model/item_model.dart';
 import 'dart:async';
 import 'news_repository.dart';
 

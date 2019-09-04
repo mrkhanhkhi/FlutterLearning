@@ -1,7 +1,7 @@
   import 'dart:async';
   import 'news_api_provider.dart';
   import 'news_db_provider.dart';
-  import 'package:news/model/item_model.dart';
+  import '../src/model/item_model.dart';
   import 'news_db_provider.dart';
 
   class Repository {
