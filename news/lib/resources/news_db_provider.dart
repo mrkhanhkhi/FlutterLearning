@@ -34,8 +34,12 @@ class NewsDbProvider implements Source, Cache {
                 parent INTEGER,
                 kids BLOB,
                 dead INTEGER,
+                deleted INTEGER,
                 title TEXT,
-                descendants INTEGER
+                text TEXT,
+                descendants INTEGER,
+                url TEXT,
+                score INTEGER
               )
           """);
         },
@@ -56,8 +60,15 @@ class NewsDbProvider implements Source, Cache {
   }
 
   Future<int> addItem(ItemModel item) {
-    return db.insert("Items", item.toMapForDb());
+    return db.insert(
+      "Items", 
+    item.toMapForDb(),
+    conflictAlgorithm: ConflictAlgorithm.ignore);
   }
+
+  clear() {
+    db.delete("Items");
+  } 
 }
 
 final newsDbProvider = NewsDbProvider();
