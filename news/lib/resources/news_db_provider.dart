@@ -67,7 +67,7 @@ class NewsDbProvider implements Source, Cache {
   }
 
   clear() {
-    db.delete("Items");
+    return db.delete("Items");
   } 
 }
 
