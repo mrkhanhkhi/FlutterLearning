@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'article.dart';
+import 'src/article.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 void main() => runApp(new MyApp());
