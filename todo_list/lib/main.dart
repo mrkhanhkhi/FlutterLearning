@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:todo_list/todo/todo_list_container.dart';
+import 'package:todo_list/todo/todo_header.dart';
+import 'package:todo_list/todo/todo_list.dart';
 
 void main() => runApp(MyApp());
 
@@ -27,29 +30,12 @@ class TodoListContainer extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(10.0),
       child: Column(children: <Widget>[
-        _buildHeader()
+        TodoHeader(),
+        Expanded(child: TodoList())
         ],
       ),
     );
   }
 
-  Widget _buildHeader() {
-    var textTodoController = TextEditingController();
-    return Row(
-      children: <Widget>[
-        Expanded(
-            child: TextFormField(
-            controller: textTodoController, 
-            decoration: InputDecoration(
-              labelText: "Add to do",
-              hintText: "Add to do"
-            ),
-          ),
-        ),
-        SizedBox(width: 10.0),
-        RaisedButton.icon(onPressed: (){}, icon: Icon(Icons.add), label: Text("Add"),)
-      ],
-    );
-  }
 }
 
