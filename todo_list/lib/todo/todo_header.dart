@@ -18,7 +18,11 @@ class TodoHeader extends StatelessWidget {
           ),
         ),
         SizedBox(width: 10.0),
-        RaisedButton.icon(onPressed: (){}, icon: Icon(Icons.add), label: Text("Add"),)
+        RaisedButton.icon(onPressed: (){
+
+        },
+          icon: Icon(Icons.add),
+          label: Text("Add"),)
       ],
     );
   }
