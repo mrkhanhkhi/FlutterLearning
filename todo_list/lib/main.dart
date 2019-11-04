@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:todo_list/bloc/todo_bloc.dart';
 import 'package:todo_list/todo/todo_list_container.dart';
 import 'package:todo_list/todo/todo_header.dart';
 import 'package:todo_list/todo/todo_list.dart';
+import 'package:provider/provider.dart';
 
 void main() => runApp(MyApp());
 
@@ -16,7 +18,10 @@ class MyApp extends StatelessWidget {
       ),
       home: Scaffold(
         appBar: AppBar(title: Text('To Do List'),),
-        body: TodoListContainer(),
+        body: Provider<TodoBloc>.value(
+            value: TodoBloc(),
+            child: TodoListContainer()
+        ),
       )
     );
   }
