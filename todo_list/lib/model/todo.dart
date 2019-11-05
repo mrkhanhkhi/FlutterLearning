@@ -20,4 +20,11 @@ class Todo {
     _content = value;
   }
 
+    Map<String, dynamic> toMap() {
+    return {
+      'id': _id,
+      'content': _content
+    };
+  }
+
 }
