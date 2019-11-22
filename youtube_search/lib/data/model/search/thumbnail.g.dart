@@ -18,7 +18,7 @@ class _$ThumbnailSerializer implements StructuredSerializer<Thumbnail> {
   Iterable<Object> serialize(Serializers serializers, Thumbnail object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object>[
-      'default',
+      'url',
       serializers.serialize(object.url, specifiedType: const FullType(String)),
       'width',
       serializers.serialize(object.width, specifiedType: const FullType(int)),
@@ -40,7 +40,7 @@ class _$ThumbnailSerializer implements StructuredSerializer<Thumbnail> {
       iterator.moveNext();
       final dynamic value = iterator.current;
       switch (key) {
-        case 'default':
+        case 'url':
           result.url = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;

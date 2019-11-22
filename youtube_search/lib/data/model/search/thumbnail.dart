@@ -11,7 +11,6 @@ part 'thumbnail.g.dart';
 
 abstract class Thumbnail implements Built<Thumbnail, ThumbnailBuilder> {
   // fields go here
-  @BuiltValueField(wireName: "default")
   String get url;
   int get width;
   int get height;

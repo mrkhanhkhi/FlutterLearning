@@ -17,21 +17,49 @@ class _$IdSerializer implements StructuredSerializer<Id> {
   @override
   Iterable<Object> serialize(Serializers serializers, Id object,
       {FullType specifiedType = FullType.unspecified}) {
-    return <Object>[];
+    final result = <Object>[
+      'videoId',
+      serializers.serialize(object.videoId,
+          specifiedType: const FullType(String)),
+    ];
+
+    return result;
   }
 
   @override
   Id deserialize(Serializers serializers, Iterable<Object> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    return new IdBuilder().build();
+    final result = new IdBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current as String;
+      iterator.moveNext();
+      final dynamic value = iterator.current;
+      switch (key) {
+        case 'videoId':
+          result.videoId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+      }
+    }
+
+    return result.build();
   }
 }
 
 class _$Id extends Id {
+  @override
+  final String videoId;
+
   factory _$Id([void Function(IdBuilder) updates]) =>
       (new IdBuilder()..update(updates)).build();
 
-  _$Id._() : super._();
+  _$Id._({this.videoId}) : super._() {
+    if (videoId == null) {
+      throw new BuiltValueNullFieldError('Id', 'videoId');
+    }
+  }
 
   @override
   Id rebuild(void Function(IdBuilder) updates) =>
@@ -43,24 +71,37 @@ class _$Id extends Id {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is Id;
+    return other is Id && videoId == other.videoId;
   }
 
   @override
   int get hashCode {
-    return 587887538;
+    return $jf($jc(0, videoId.hashCode));
   }
 
   @override
   String toString() {
-    return newBuiltValueToStringHelper('Id').toString();
+    return (newBuiltValueToStringHelper('Id')..add('videoId', videoId))
+        .toString();
   }
 }
 
 class IdBuilder implements Builder<Id, IdBuilder> {
   _$Id _$v;
 
+  String _videoId;
+  String get videoId => _$this._videoId;
+  set videoId(String videoId) => _$this._videoId = videoId;
+
   IdBuilder();
+
+  IdBuilder get _$this {
+    if (_$v != null) {
+      _videoId = _$v.videoId;
+      _$v = null;
+    }
+    return this;
+  }
 
   @override
   void replace(Id other) {
@@ -77,7 +118,7 @@ class IdBuilder implements Builder<Id, IdBuilder> {
 
   @override
   _$Id build() {
-    final _$result = _$v ?? new _$Id._();
+    final _$result = _$v ?? new _$Id._(videoId: videoId);
     replace(_$result);
     return _$result;
   }

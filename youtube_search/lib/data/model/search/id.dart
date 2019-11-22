@@ -11,7 +11,7 @@ part 'id.g.dart';
 
 abstract class Id implements Built<Id, IdBuilder> {
   // fields go here
-
+  String get videoId;
   Id._();
 
   factory Id([updates(IdBuilder b)]) = _$Id;

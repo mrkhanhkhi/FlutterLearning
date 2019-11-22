@@ -10,7 +10,7 @@ const int MAX_SEARCH_RESULT = 5;
 class YoutubeDataSource {
   final http.Client client;
 
-  final String _searchBseUrl =
+  final String _searchBaseUrl =
       'https://www.googleapis.com/youtube/v3/search?part=snippet' +
           '&maxResults=$MAX_SEARCH_RESULT&type=video&key=$API_KEY';
 
@@ -20,7 +20,7 @@ class YoutubeDataSource {
     String query,
     String pageToken = '',
   }) async {
-    final urlRaw = _searchBseUrl +
+    final urlRaw = _searchBaseUrl +
         "&q=$query" +
         (pageToken.isNotEmpty ? '&pageToken=$pageToken' : '');
     final urlEncoded = Uri.encodeFull(urlRaw);

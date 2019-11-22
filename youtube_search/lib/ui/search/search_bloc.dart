@@ -12,6 +12,10 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
     dispatch(SearchInitiated((b) => b..query = query));
   }
 
+  void fetchNextResultPage() {
+    dispatch(FetchNextResultPage());
+  }
+
   @override
   SearchState get initialState =>
       SearchState.initial(); // TODO: implement initialState;
@@ -23,6 +27,8 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
   ) async* {
     if (event is SearchInitiated) {
       yield* mapSearchInitiated(event);
+    } else if (event is FetchNextResultPage) {
+      yield* mapFetchNextResultPage();
     }
     // TODO: implement mapEventToState
   }
@@ -41,6 +47,19 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
       } on NoSearchResultsException catch (e) {
         yield SearchState.failure(e.message);
       }
+    }
+  }
+
+  Stream<SearchState> mapFetchNextResultPage() async* {
+    try {
+      final nextPageResults = await _youtubeRepository.fetchNextResultPage();
+      yield SearchState.success(currentState.searchResults + nextPageResults);
+    } on NoNextPageTokenException catch (_) {
+      yield currentState.rebuild((b) => b..hasReachedEndOfResults = true);
+    } on SearchNotInitializedException catch (e) {
+      yield SearchState.failure(e.message);
+    } on YoutubeSearchError catch (e) {
+      yield SearchState.failure(e.message);
     }
   }
 }
