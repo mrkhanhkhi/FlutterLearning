@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kiwi/kiwi.dart' as kiwi;
+import 'package:youtube_search/data/model/search/modeal_search.dart';
 import 'package:youtube_search/data/model/search/search_snippet.dart';
+import 'package:youtube_search/ui/detail/detail_page.dart';
 import 'package:youtube_search/ui/search/search_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:youtube_search/ui/search/search_state.dart';
@@ -65,7 +67,7 @@ class _SearchPageState extends State<SearchPage> {
           itemBuilder: (context, index) {
             return index >= state.searchResults.length
                 ? _buildLoaderListITem()
-                : _buildVideoListItemCard(state.searchResults[index].snippet);
+                : _buildVideoListItem(state.searchResults[index]);
           },
         ));
   }
@@ -90,13 +92,47 @@ class _SearchPageState extends State<SearchPage> {
     return Center(child: CircularProgressIndicator());
   }
 
-  Widget _buildVideoListItemCard(SearchSnippet snippet) {
+  Widget _buildVideoListItem(SearchItem searchItem) {
+    return GestureDetector(
+      child: _buildVideoListItemCard(searchItem.snippet),
+      onTap: () {
+        Navigator.push(context, MaterialPageRoute(builder: (_) {
+          return DetailPage(videoId: searchItem.id.videoId);
+        }));
+      },
+    );
+  }
+
+  Widget _buildVideoListItemCard(SearchSnippet videoSnippet) {
     return Card(
-        child: Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        children: <Widget>[Image.network(snippet.thumbnails.high.url)],
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: <Widget>[
+            AspectRatio(
+              aspectRatio: 16 / 9,
+              child: Image.network(
+                videoSnippet.thumbnails.high.url,
+                fit: BoxFit.cover,
+              ),
+            ),
+            SizedBox(height: 5),
+            Text(
+              videoSnippet.title,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 25,
+              ),
+            ),
+            SizedBox(height: 5),
+            Text(
+              videoSnippet.description,
+            ),
+          ],
+        ),
       ),
-    ));
+    );
   }
 }
