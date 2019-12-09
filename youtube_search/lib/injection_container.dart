@@ -2,6 +2,7 @@ import 'package:kiwi/kiwi.dart' as kiwi;
 import 'package:http/http.dart' as http;
 import 'package:youtube_search/data/network/youtube_data_source.dart';
 import 'package:youtube_search/data/repository/youtube_repository.dart';
+import 'package:youtube_search/ui/bottom_navigator/bloc/bloc.dart';
 import 'package:youtube_search/ui/detail/bloc/detail_bloc.dart';
 import 'package:youtube_search/ui/search/search_bloc.dart';
 
