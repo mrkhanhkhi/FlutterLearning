@@ -1,9 +1,9 @@
-class MealCategory {
+class MealByCategory {
   String _strMeal;
   String _strMealThumb;
   String _idMeal;
 
-  MealCategory({String strMeal, String strMealThumb, String idMeal}) {
+  MealByCategory({String strMeal, String strMealThumb, String idMeal}) {
     this._strMeal = strMeal;
     this._strMealThumb = strMealThumb;
     this._idMeal = idMeal;
@@ -16,7 +16,7 @@ class MealCategory {
   String get idMeal => _idMeal;
   set idMeal(String idMeal) => _idMeal = idMeal;
 
-  MealCategory.fromJson(Map<String, dynamic> json) {
+  MealByCategory.fromJson(Map<String, dynamic> json) {
     _strMeal = json['strMeal'];
     _strMealThumb = json['strMealThumb'];
     _idMeal = json['idMeal'];

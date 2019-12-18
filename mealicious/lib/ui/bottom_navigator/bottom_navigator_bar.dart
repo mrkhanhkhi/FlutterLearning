@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kiwi/kiwi.dart' as kiwi;
-import 'package:youtube_search/ui/bottom_navigator/bloc/navbar_bloc.dart';
-import 'package:youtube_search/ui/bottom_navigator/bloc/navbar_event.dart';
-import 'package:youtube_search/ui/bottom_navigator/bloc/navbar_state.dart';
-import 'package:youtube_search/ui/search/search_page.dart';
+import 'package:mealicious/ui/bottom_navigator/bloc/navbar_bloc.dart';
+import 'package:mealicious/ui/bottom_navigator/bloc/navbar_event.dart';
+import 'package:mealicious/ui/bottom_navigator/bloc/navbar_state.dart';
 
 class BottomNavigatorBar extends StatefulWidget {
   @override
