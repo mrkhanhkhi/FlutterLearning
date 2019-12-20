@@ -8,7 +8,7 @@ const String API_KEY = '9973533';
 class MealDatasource {
   final http.Client client;
 
-  final String _baseUrl = "https://www.themealdb.com/api/json/v2/1/$API_KEY";
+  final String _baseUrl = "https://www.themealdb.com/api/json/v2/$API_KEY";
 
   MealDatasource(this.client);
 
@@ -18,7 +18,7 @@ class MealDatasource {
     final response = await client.get(urlEncoded);
 
     if (response.statusCode == 200) {
-      return LatestMeals.fromJson(json.decode(response.body)['meals']);
+      return LatestMeals.fromJson(json.decode(response.body));
     } else {
       throw GetLatestMealsError('Error');
     }

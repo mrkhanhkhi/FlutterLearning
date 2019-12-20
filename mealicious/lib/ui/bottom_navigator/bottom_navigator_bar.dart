@@ -4,6 +4,7 @@ import 'package:kiwi/kiwi.dart' as kiwi;
 import 'package:mealicious/ui/bottom_navigator/bloc/navbar_bloc.dart';
 import 'package:mealicious/ui/bottom_navigator/bloc/navbar_event.dart';
 import 'package:mealicious/ui/bottom_navigator/bloc/navbar_state.dart';
+import 'package:mealicious/ui/home/home_page.dart';
 
 class BottomNavigatorBar extends StatefulWidget {
   @override
@@ -76,10 +77,10 @@ class _BottomNavigatorBarState extends State<BottomNavigatorBar> {
   }
 
   Widget buildBodyPage(NavbarState state) {
-    if (state is ShowSearchView) return SearchPage();
-    if (state is ShowFavoriteView) return SearchPage();
-    if (state is ShowCartView) return SearchPage();
-    if (state is ShowSettingView) return SearchPage();
+    if (state is ShowSearchView) return HomePage();
+    if (state is ShowFavoriteView) return HomePage();
+    if (state is ShowCartView) return HomePage();
+    if (state is ShowSettingView) return HomePage();
   }
 
   @override

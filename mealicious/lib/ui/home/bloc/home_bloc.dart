@@ -9,13 +9,18 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final MealRepository _mealRepository;
   HomeBloc(this._mealRepository) : super();
 
+  // void onSearchInitiated() {
+  //   dispatch(FetchInitated());
+  // }
+
   @override
   Stream<HomeState> mapEventToState(
     HomeState state,
     HomeEvent event,
   ) async* {
     if (event is FetchInitated) {
-    } else if (event is FetchInitated) {}
+      yield* _fetchLatestMeals();
+    }
     // TODO: Add Logic
   }
 
