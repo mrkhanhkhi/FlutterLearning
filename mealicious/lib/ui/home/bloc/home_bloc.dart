@@ -27,7 +27,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   Stream<HomeState> _fetchLatestMeals() async* {
     yield MealLoading();
     try {
-      final fetchResults = _mealRepository.searchLatestMeals();
+      final fetchResults = await _mealRepository.searchLatestMeals();
       yield MealLoaded(fetchResults);
     } catch (_) {
       yield MealLoadEror();

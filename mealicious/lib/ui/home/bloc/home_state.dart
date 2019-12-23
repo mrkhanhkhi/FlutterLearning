@@ -10,8 +10,8 @@ class InitialHomeState extends HomeState {}
 class MealLoading extends HomeState {}
 
 class MealLoaded extends HomeState {
-  final LatestMeals meals;
-  MealLoaded(Future<LatestMeals> fetchResults, {this.meals});
+  final List<MealDetail> meals;
+  MealLoaded(this.meals);
 }
 
 class MealLoadEror extends HomeState {

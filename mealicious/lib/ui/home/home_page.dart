@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kiwi/kiwi.dart' as kiwi;
+import 'package:mealicious/common/centered_message.dart';
 import 'package:mealicious/ui/home/bloc/home_bloc.dart';
 import 'package:mealicious/ui/home/bloc/home_event.dart';
 import 'package:mealicious/ui/home/bloc/home_state.dart';
@@ -33,9 +34,13 @@ class _HomePageState extends State<HomePage> {
         bloc: _homeBloc,
         builder: (context, HomeState state) {
           if (state is MealLoaded) {
-            buildLatestMealList(state);
+            return _buildLatestMealList(state);
+          }
+
+          if (state is MealLoading) {
+            return _buildLoaderListITem();
           } else {
-            return Container();
+            return CenteredMessage(message: "Error", icon: Icons.error_outline);
           }
         },
       ),
@@ -46,28 +51,30 @@ class _HomePageState extends State<HomePage> {
     return Center(child: CircularProgressIndicator());
   }
 
-  Widget buildLatestMealList(MealLoaded state) {
-    return Container(
-        padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 24.0),
-        height: MediaQuery.of(context).size.height * 0.35,
-        child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: state.meals.meals.length,
-            itemBuilder: (context, index) {
-              return Container(
-                width: MediaQuery.of(context).size.width * 0.6,
-                child: Card(
-                  color: Colors.blue,
-                  child: Container(
-                    child: Center(
-                        child: Text(
-                      state.meals.meals[index].strMeal,
-                      style: TextStyle(color: Colors.white, fontSize: 36.0),
-                    )),
+  Widget _buildLatestMealList(MealLoaded state) {
+    return Center(
+      child: Container(
+          padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 24.0),
+          height: MediaQuery.of(context).size.height * 0.35,
+          child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: state.meals.length,
+              itemBuilder: (context, index) {
+                return Container(
+                  width: MediaQuery.of(context).size.width * 0.6,
+                  child: Card(
+                    color: Colors.blue,
+                    child: Container(
+                      child: Center(
+                          child: Text(
+                        state.meals[index].strMeal,
+                        style: TextStyle(color: Colors.white, fontSize: 36.0),
+                      )),
+                    ),
                   ),
-                ),
-              );
-            }));
+                );
+              })),
+    );
   }
 
   // Widget _buildMealItemCard(SearchSnippet videoSnippet) {
