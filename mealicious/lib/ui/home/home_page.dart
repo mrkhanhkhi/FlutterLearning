@@ -18,8 +18,8 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    _latestMealsBloc.dispatch(StartLoadMeal());
-    _categoriesBloc.dispatch(StartLoadCategories());
+    _latestMealsBloc.add(StartLoadMeal());
+    _categoriesBloc.add(StartLoadCategories());
   }
 
   @override
@@ -89,7 +89,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void dispose() {
     super.dispose();
-    _latestMealsBloc.dispose();
+    _latestMealsBloc.close();
   }
 
   // Widget _buildMealItemCard(SearchSnippet videoSnippet) {

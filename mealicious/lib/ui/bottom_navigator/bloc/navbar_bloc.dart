@@ -7,8 +7,7 @@ class NavbarBloc extends Bloc<NavbarItems, NavbarState> {
   NavbarState get initialState => ShowSearchView();
 
   @override
-  Stream<NavbarState> mapEventToState(
-      NavbarState state, NavbarItems event) async* {
+  Stream<NavbarState> mapEventToState(NavbarItems event) async* {
     switch (event) {
       case NavbarItems.Favorite:
         yield ShowFavoriteView();

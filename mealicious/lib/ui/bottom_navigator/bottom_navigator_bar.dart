@@ -45,10 +45,10 @@ class _BottomNavigatorBarState extends State<BottomNavigatorBar> {
         backgroundColor: Colors.red,
         currentIndex: currentIndex,
         onTap: (index) {
-          if (index == 0) _bottomNavigatorBloc.dispatch(NavbarItems.Search);
-          if (index == 1) _bottomNavigatorBloc.dispatch(NavbarItems.Favorite);
-          if (index == 2) _bottomNavigatorBloc.dispatch(NavbarItems.Cart);
-          if (index == 3) _bottomNavigatorBloc.dispatch(NavbarItems.Setting);
+          if (index == 0) _bottomNavigatorBloc.add(NavbarItems.Search);
+          if (index == 1) _bottomNavigatorBloc.add(NavbarItems.Favorite);
+          if (index == 2) _bottomNavigatorBloc.add(NavbarItems.Cart);
+          if (index == 3) _bottomNavigatorBloc.add(NavbarItems.Setting);
         },
         items: [
           BottomNavigationBarItem(
@@ -85,7 +85,7 @@ class _BottomNavigatorBarState extends State<BottomNavigatorBar> {
 
   @override
   void dispose() {
-    _bottomNavigatorBloc.dispose();
+    _bottomNavigatorBloc.close();
     super.dispose();
   }
 }

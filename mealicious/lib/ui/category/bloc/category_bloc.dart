@@ -11,7 +11,6 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
 
   @override
   Stream<CategoryState> mapEventToState(
-    CategoryState state,
     CategoryEvent event,
   ) async* {
     if (event is StartLoadCategories) {

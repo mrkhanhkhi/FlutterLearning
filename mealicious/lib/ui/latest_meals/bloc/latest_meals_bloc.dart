@@ -11,7 +11,6 @@ class LatestMealsBloc extends Bloc<LatestMealsEvent, LatestMealsState> {
 
   @override
   Stream<LatestMealsState> mapEventToState(
-    LatestMealsState state,
     LatestMealsEvent event,
   ) async* {
     if (event is StartLoadMeal) {
