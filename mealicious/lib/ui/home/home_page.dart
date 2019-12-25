@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kiwi/kiwi.dart' as kiwi;
 import 'package:mealicious/common/centered_message.dart';
-import 'package:mealicious/ui/home/bloc/home_bloc.dart';
-import 'package:mealicious/ui/home/bloc/home_event.dart';
-import 'package:mealicious/ui/home/bloc/home_state.dart';
+import 'package:mealicious/ui/category/bloc/bloc.dart';
+import 'package:mealicious/ui/latest_meals/bloc/latest_meals_bloc.dart';
+import 'package:mealicious/ui/latest_meals/bloc/latest_meals_event.dart';
+import 'package:mealicious/ui/latest_meals/bloc/latest_meals_state.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -12,27 +13,35 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final _homeBloc = kiwi.Container().resolve<HomeBloc>();
+  final _latestMealsBloc = kiwi.Container().resolve<LatestMealsBloc>();
+  final _categoriesBloc = kiwi.Container().resolve<CategoryBloc>();
   @override
   void initState() {
     super.initState();
-    _homeBloc.dispatch(FetchInitated());
+    _latestMealsBloc.dispatch(StartLoadMeal());
+    _categoriesBloc.dispatch(StartLoadCategories());
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      bloc: _homeBloc,
-      child: _buildScaffold(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<CategoryBloc>(create: (context) => _categoriesBloc),
+        BlocProvider<LatestMealsBloc>(create: (context) => _latestMealsBloc),
+      ],
+      child: Container(
+        child: Column(
+          children: <Widget>[],
+        ),
+      ),
     );
   }
 
-  Scaffold _buildScaffold() {
-    return Scaffold(
-      appBar: null,
-      body: BlocBuilder(
-        bloc: _homeBloc,
-        builder: (context, HomeState state) {
+  Widget _buildLatestMealsList() {
+    return Container(
+      child: BlocBuilder(
+        bloc: _latestMealsBloc,
+        builder: (context, LatestMealsState state) {
           if (state is MealLoaded) {
             return _buildLatestMealList(state);
           }
@@ -75,6 +84,12 @@ class _HomePageState extends State<HomePage> {
                 );
               })),
     );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _latestMealsBloc.dispose();
   }
 
   // Widget _buildMealItemCard(SearchSnippet videoSnippet) {

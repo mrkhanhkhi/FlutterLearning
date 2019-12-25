@@ -3,28 +3,24 @@ import 'package:bloc/bloc.dart';
 import 'package:mealicious/data/repository/meal_repository.dart';
 import './bloc.dart';
 
-class HomeBloc extends Bloc<HomeEvent, HomeState> {
+class LatestMealsBloc extends Bloc<LatestMealsEvent, LatestMealsState> {
   @override
-  HomeState get initialState => InitialHomeState();
+  LatestMealsState get initialState => InitialLatestMealsState();
   final MealRepository _mealRepository;
-  HomeBloc(this._mealRepository) : super();
-
-  // void onSearchInitiated() {
-  //   dispatch(FetchInitated());
-  // }
+  LatestMealsBloc(this._mealRepository) : super();
 
   @override
-  Stream<HomeState> mapEventToState(
-    HomeState state,
-    HomeEvent event,
+  Stream<LatestMealsState> mapEventToState(
+    LatestMealsState state,
+    LatestMealsEvent event,
   ) async* {
-    if (event is FetchInitated) {
+    if (event is StartLoadMeal) {
       yield* _fetchLatestMeals();
     }
     // TODO: Add Logic
   }
 
-  Stream<HomeState> _fetchLatestMeals() async* {
+  Stream<LatestMealsState> _fetchLatestMeals() async* {
     yield MealLoading();
     try {
       final fetchResults = await _mealRepository.searchLatestMeals();
