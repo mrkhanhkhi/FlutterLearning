@@ -42,7 +42,7 @@ class _BottomNavigatorBarState extends State<BottomNavigatorBar> {
       ),
       body: buildBodyPage(state),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.red,
+        backgroundColor: Colors.white,
         currentIndex: currentIndex,
         onTap: (index) {
           if (index == 0) _bottomNavigatorBloc.add(NavbarItems.Search);
@@ -52,23 +52,23 @@ class _BottomNavigatorBarState extends State<BottomNavigatorBar> {
         },
         items: [
           BottomNavigationBarItem(
-            backgroundColor: Colors.red,
-            icon: Icon(Icons.search),
+            backgroundColor: Colors.white,
+            icon: Icon(Icons.search, color: Colors.orangeAccent),
             title: Text("Search"),
           ),
           BottomNavigationBarItem(
-            backgroundColor: Colors.red,
-            icon: Icon(Icons.favorite),
+            backgroundColor: Colors.white,
+            icon: Icon(Icons.favorite, color: Colors.orangeAccent),
             title: Text("Favorite"),
           ),
           BottomNavigationBarItem(
-            backgroundColor: Colors.red,
-            icon: Icon(Icons.shopping_cart),
+            backgroundColor: Colors.white,
+            icon: Icon(Icons.shopping_cart, color: Colors.orangeAccent),
             title: Text("Cart"),
           ),
           BottomNavigationBarItem(
-            backgroundColor: Colors.red,
-            icon: Icon(Icons.settings),
+            backgroundColor: Colors.white,
+            icon: Icon(Icons.settings, color: Colors.orangeAccent),
             title: Text("Setting"),
           )
         ],

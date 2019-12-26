@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         theme: ThemeData(
           brightness: Brightness.light,
-          primarySwatch: Colors.red,
+          primaryColor: Colors.white,
           accentColor: Colors.red.shade400,
         ),
         home: BottomNavigatorBar());
