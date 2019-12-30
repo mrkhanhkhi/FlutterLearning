@@ -26,6 +26,7 @@ dependencies:
   flutter_bloc: ^2.0.0
   kiwi: ^0.1.0
   equatable: ^1.0.1
+  cached_network_image: ^2.0.0-rc
 
 dev_dependencies:
   flutter_test:

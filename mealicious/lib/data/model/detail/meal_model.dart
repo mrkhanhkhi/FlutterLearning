@@ -31,110 +31,162 @@ class Meals {
 }
 
 class MealDetail {
-  @nullable String _idMeal;
-  @nullable String _strMeal;
-  @nullable String _strDrinkAlternate;
-  @nullable String _strCategory;
-  @nullable String _strArea;
-  @nullable String _strInstructions;
-  @nullable String _strMealThumb;
-  @nullable String _strTags;
-  @nullable String _strYoutube;
-  @nullable String _strIngredient1;
-  @nullable String _strIngredient2;
-  @nullable String _strIngredient3;
-  @nullable String _strIngredient4;
-  @nullable String _strIngredient5;
-  @nullable String _strIngredient6;
-  @nullable String _strIngredient7;
-  @nullable String _strIngredient8;
-  @nullable String _strIngredient9;
-  @nullable String _strIngredient10;
-  @nullable String _strIngredient11;
-  @nullable String _strIngredient12;
-  @nullable String _strIngredient13;
-  @nullable String _strIngredient14;
-  @nullable String _strIngredient15;
-  @nullable String _strIngredient16;
-  @nullable String _strIngredient17;
-  @nullable String _strIngredient18;
-  @nullable String _strIngredient19;
-  @nullable String _strIngredient20;
-  @nullable String _strMeasure1;
-  @nullable String _strMeasure2;
-  @nullable String _strMeasure3;
-  @nullable String _strMeasure4;
-  @nullable String _strMeasure5;
-  @nullable String _strMeasure6;
-  @nullable String _strMeasure7;
-  @nullable String _strMeasure8;
-  @nullable String _strMeasure9;
-  @nullable String _strMeasure10;
-  @nullable String _strMeasure11;
-  @nullable String _strMeasure12;
-  @nullable String _strMeasure13;
-  @nullable String _strMeasure14;
-  @nullable String _strMeasure15;
-  @nullable String _strMeasure16;
-  @nullable String _strMeasure17;
-  @nullable String _strMeasure18;
-  @nullable String _strMeasure19;
-  @nullable String _strMeasure20;
-  @nullable String _strSource;
-  @nullable String _dateModified;
+  @nullable
+  String _idMeal;
+  @nullable
+  String _strMeal;
+  @nullable
+  String _strDrinkAlternate;
+  @nullable
+  String _strCategory;
+  @nullable
+  String _strArea;
+  @nullable
+  String _strInstructions;
+  @nullable
+  String _strMealThumb;
+  @nullable
+  String _strTags;
+  @nullable
+  String _strYoutube;
+  @nullable
+  String _strIngredient1;
+  @nullable
+  String _strIngredient2;
+  @nullable
+  String _strIngredient3;
+  @nullable
+  String _strIngredient4;
+  @nullable
+  String _strIngredient5;
+  @nullable
+  String _strIngredient6;
+  @nullable
+  String _strIngredient7;
+  @nullable
+  String _strIngredient8;
+  @nullable
+  String _strIngredient9;
+  @nullable
+  String _strIngredient10;
+  @nullable
+  String _strIngredient11;
+  @nullable
+  String _strIngredient12;
+  @nullable
+  String _strIngredient13;
+  @nullable
+  String _strIngredient14;
+  @nullable
+  String _strIngredient15;
+  @nullable
+  String _strIngredient16;
+  @nullable
+  String _strIngredient17;
+  @nullable
+  String _strIngredient18;
+  @nullable
+  String _strIngredient19;
+  @nullable
+  String _strIngredient20;
+  @nullable
+  String _strMeasure1;
+  @nullable
+  String _strMeasure2;
+  @nullable
+  String _strMeasure3;
+  @nullable
+  String _strMeasure4;
+  @nullable
+  String _strMeasure5;
+  @nullable
+  String _strMeasure6;
+  @nullable
+  String _strMeasure7;
+  @nullable
+  String _strMeasure8;
+  @nullable
+  String _strMeasure9;
+  @nullable
+  String _strMeasure10;
+  @nullable
+  String _strMeasure11;
+  @nullable
+  String _strMeasure12;
+  @nullable
+  String _strMeasure13;
+  @nullable
+  String _strMeasure14;
+  @nullable
+  String _strMeasure15;
+  @nullable
+  String _strMeasure16;
+  @nullable
+  String _strMeasure17;
+  @nullable
+  String _strMeasure18;
+  @nullable
+  String _strMeasure19;
+  @nullable
+  String _strMeasure20;
+  @nullable
+  String _strSource;
+  @nullable
+  String _dateModified;
+  bool isFavorite = false;
 
   MealDetail(
       {String idMeal,
-        String strMeal,
-        String strDrinkAlternate,
-        String strCategory,
-        String strArea,
-        String strInstructions,
-        String strMealThumb,
-        String strTags,
-        String strYoutube,
-        String strIngredient1,
-        String strIngredient2,
-        String strIngredient3,
-        String strIngredient4,
-        String strIngredient5,
-        String strIngredient6,
-        String strIngredient7,
-        String strIngredient8,
-        String strIngredient9,
-        String strIngredient10,
-        String strIngredient11,
-        String strIngredient12,
-        String strIngredient13,
-        String strIngredient14,
-        String strIngredient15,
-        String strIngredient16,
-        String strIngredient17,
-        String strIngredient18,
-        String strIngredient19,
-        String strIngredient20,
-        String strMeasure1,
-        String strMeasure2,
-        String strMeasure3,
-        String strMeasure4,
-        String strMeasure5,
-        String strMeasure6,
-        String strMeasure7,
-        String strMeasure8,
-        String strMeasure9,
-        String strMeasure10,
-        String strMeasure11,
-        String strMeasure12,
-        String strMeasure13,
-        String strMeasure14,
-        String strMeasure15,
-        String strMeasure16,
-        String strMeasure17,
-        String strMeasure18,
-        String strMeasure19,
-        String strMeasure20,
-        String strSource,
-        String dateModified}) {
+      String strMeal,
+      String strDrinkAlternate,
+      String strCategory,
+      String strArea,
+      String strInstructions,
+      String strMealThumb,
+      String strTags,
+      String strYoutube,
+      String strIngredient1,
+      String strIngredient2,
+      String strIngredient3,
+      String strIngredient4,
+      String strIngredient5,
+      String strIngredient6,
+      String strIngredient7,
+      String strIngredient8,
+      String strIngredient9,
+      String strIngredient10,
+      String strIngredient11,
+      String strIngredient12,
+      String strIngredient13,
+      String strIngredient14,
+      String strIngredient15,
+      String strIngredient16,
+      String strIngredient17,
+      String strIngredient18,
+      String strIngredient19,
+      String strIngredient20,
+      String strMeasure1,
+      String strMeasure2,
+      String strMeasure3,
+      String strMeasure4,
+      String strMeasure5,
+      String strMeasure6,
+      String strMeasure7,
+      String strMeasure8,
+      String strMeasure9,
+      String strMeasure10,
+      String strMeasure11,
+      String strMeasure12,
+      String strMeasure13,
+      String strMeasure14,
+      String strMeasure15,
+      String strMeasure16,
+      String strMeasure17,
+      String strMeasure18,
+      String strMeasure19,
+      String strMeasure20,
+      String strSource,
+      String dateModified}) {
     this._idMeal = idMeal;
     this._strMeal = strMeal;
     this._strDrinkAlternate = strDrinkAlternate;
@@ -414,4 +466,3 @@ class MealDetail {
     return data;
   }
 }
-
