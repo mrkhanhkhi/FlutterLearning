@@ -37,15 +37,7 @@ class _HomePageState extends State<HomePage> {
           color: Colors.white,
           child: ListView(
             children: <Widget>[
-              Text('Categories',
-                  style: TextStyle(
-                    fontSize: 30.0,
-                  )),
               _buildCategories(),
-              Text('Latest',
-                  style: TextStyle(
-                    fontSize: 30.0,
-                  )),
               _buildLatestList(),
             ],
           ),
@@ -97,47 +89,45 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _buildCategoriesList(CategoriesLoaded state) {
-    return Center(
-      child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 24.0),
-          height: 180.0,
-          child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: state.categories.length,
-              itemBuilder: (context, index) {
-                return Container(
-                  width: 100.0,
-                  child: Card(
-                    elevation: 0,
-                    color: Colors.transparent,
-                    child: Column(
-                      children: <Widget>[
-                        Center(
-                            child: Container(
-                                height: 80.0,
-                                width: 80.0,
-                                margin: EdgeInsets.only(left: 5.0, right: 5.0),
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(100.0),
-                                    border: Border.all(
-                                        width: 2.0,
-                                        style: BorderStyle.solid,
-                                        color: Color.fromARGB(255, 0, 0, 0)),
-                                    image: DecorationImage(
-                                        fit: BoxFit.cover,
-                                        image: NetworkImage(state
-                                            .categories[index]
-                                            .strCategoryThumb))))),
-                        Text(
-                          state.categories[index].strCategory,
-                          style: TextStyle(color: Colors.black, fontSize: 15.0),
-                        )
-                      ],
-                    ),
+    return Container(
+        padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 24.0),
+        height: 160.0,
+        child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: state.categories.length,
+            itemBuilder: (context, index) {
+              return Container(
+                width: 100.0,
+                child: Card(
+                  elevation: 0,
+                  color: Colors.transparent,
+                  child: Column(
+                    children: <Widget>[
+                      Center(
+                          child: Container(
+                              height: 80.0,
+                              width: 80.0,
+                              margin: EdgeInsets.only(left: 5.0, right: 5.0),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(100.0),
+                                  border: Border.all(
+                                      width: 2.0,
+                                      style: BorderStyle.solid,
+                                      color: Color.fromARGB(255, 0, 0, 0)),
+                                  image: DecorationImage(
+                                      fit: BoxFit.cover,
+                                      image: NetworkImage(state
+                                          .categories[index]
+                                          .strCategoryThumb))))),
+                      Text(
+                        state.categories[index].strCategory,
+                        style: TextStyle(color: Colors.black, fontSize: 15.0),
+                      )
+                    ],
                   ),
-                );
-              })),
-    );
+                ),
+              );
+            }));
   }
 
   Widget _buildLatestMealList(MealLoaded state) {
@@ -150,12 +140,4 @@ class _HomePageState extends State<HomePage> {
     _latestMealsBloc.close();
     _categoriesBloc.close();
   }
-
-  // Widget _buildMealItemCard(SearchSnippet videoSnippet) {
-  //   return Card(
-  //                 color: Colors.blue,
-  //                 child: Container(
-  //                   child: Center(child: Text(numbers[index].toString(), style: TextStyle(color: Colors.white, fontSize: 36.0),)),
-  //                 );
-  // }
 }

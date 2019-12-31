@@ -18,23 +18,26 @@ class _MealGridState extends State<MealGrid> {
     final Orientation orientation = MediaQuery.of(context).orientation;
     return Center(
       child: Container(
+        height: 600.0,
         child: Column(
           children: <Widget>[
-            GridView.count(
-              crossAxisCount: (orientation == Orientation.portrait) ? 2 : 3,
-              mainAxisSpacing: 4.0,
-              crossAxisSpacing: 4.0,
-              padding: const EdgeInsets.all(4.0),
-              children: widget.state.meals.map<Widget>((MealDetail meal) {
-                return GridItem(
-                  meal: meal,
-                  onBannerTap: (MealDetail meal) {
-                    setState(() {
-                      meal.isFavorite = !meal.isFavorite;
-                    });
-                  },
-                );
-              }).toList(),
+            Expanded(
+              child: GridView.count(
+                crossAxisCount: (orientation == Orientation.portrait) ? 2 : 3,
+                mainAxisSpacing: 4.0,
+                crossAxisSpacing: 4.0,
+                padding: const EdgeInsets.all(4.0),
+                children: widget.state.meals.map<Widget>((MealDetail meal) {
+                  return GridItem(
+                    meal: meal,
+                    onBannerTap: (MealDetail meal) {
+                      setState(() {
+                        meal.isFavorite = !meal.isFavorite;
+                      });
+                    },
+                  );
+                }).toList(),
+              ),
             ),
           ],
         ),
