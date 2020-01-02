@@ -1,6 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mealicious/common/centered_message.dart';
 import 'package:mealicious/data/model/detail/meal_model.dart';
+import 'package:kiwi/kiwi.dart' as kiwi;
+import 'package:mealicious/ui/favorite/bloc/bloc.dart';
 
 typedef BannerTapCallback = void Function(MealDetail meal);
 
@@ -26,23 +30,6 @@ class GridItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Widget image = GestureDetector(
-      onTap: () {
-        showMeal(context);
-      },
-      child: CachedNetworkImage(
-        imageUrl: meal.strMealThumb,
-        imageBuilder: (context, imageProvider) => Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10.0),
-            image: DecorationImage(image: imageProvider, fit: BoxFit.cover),
-          ),
-        ),
-        placeholder: (context, url) => CircularProgressIndicator(),
-        errorWidget: (context, url, error) => Icon(Icons.error),
-      ),
-    );
-
     final IconData icon = meal.isFavorite ? Icons.star : Icons.star_border;
 
     return Padding(
@@ -51,50 +38,54 @@ class GridItem extends StatelessWidget {
         child: Container(
           child: ClipRRect(
             borderRadius: BorderRadius.circular(20.0),
-            child: GridTile(
-              footer: GestureDetector(
-                onTap: () {
-                  onBannerTap(meal);
-                },
-                child: GridTileBar(
-                  backgroundColor: Colors.black45,
-                  title: _GridTitleText(meal.strMeal),
-                  subtitle: _GridTitleText(meal.strCategory),
-                  trailing: Icon(
-                    icon,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-              child: image,
+            child: BlocProvider(
+              create: (BuildContext context) => FavoriteBloc(),
+              child: BlocBuilder<FavoriteBloc, FavoriteState>(
+                  builder: (context, state) {
+                if (state is InitialFavoriteState) {
+                  return GridTile(
+                    footer: GestureDetector(
+                      onTap: () {
+                        onBannerTap(meal);
+                      },
+                      child: GridTileBar(
+                        backgroundColor: Colors.black45,
+                        title: _GridTitleText(meal.strMeal),
+                        subtitle: _GridTitleText(meal.strCategory),
+                        trailing: Icon(
+                          icon,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                    child: image(context),
+                  );
+                } else {
+                  return CenteredMessage(
+                      message: "Error", icon: Icons.error_outline);
+                }
+              }),
             ),
           ),
         ));
-
-    // return Container(
-    //   decoration: BoxDecoration(
-    //       // border: Border.all(color: Color(0xff940D5A)),
-    //       color: Colors.white,
-    //       borderRadius: BorderRadius.circular(17.0)),
-    //   child: GridTile(
-    //     footer: GestureDetector(
-    //       onTap: () {
-    //         onBannerTap(meal);
-    //       },
-    //       child: GridTileBar(
-    //         backgroundColor: Colors.black45,
-    //         title: _GridTitleText(meal.strMeal),
-    //         subtitle: _GridTitleText(meal.strCategory),
-    //         trailing: Icon(
-    //           icon,
-    //           color: Colors.white,
-    //         ),
-    //       ),
-    //     ),
-    //     child: image,
-    //   ),
-    // );
   }
+
+  Widget image(context) => GestureDetector(
+        onTap: () {
+          showMeal(context);
+        },
+        child: CachedNetworkImage(
+          imageUrl: meal.strMealThumb,
+          imageBuilder: (context, imageProvider) => Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10.0),
+              image: DecorationImage(image: imageProvider, fit: BoxFit.cover),
+            ),
+          ),
+          placeholder: (context, url) => CircularProgressIndicator(),
+          errorWidget: (context, url, error) => Icon(Icons.error),
+        ),
+      );
 
   Widget buildCard() {
     return Padding(

@@ -5,6 +5,7 @@ import 'package:mealicious/data/network/meal_data_source.dart';
 import 'package:mealicious/data/repository/categories_repository.dart';
 import 'package:mealicious/data/repository/meal_repository.dart';
 import 'package:mealicious/ui/category/bloc/category_bloc.dart';
+import 'package:mealicious/ui/favorite/bloc/favorite_bloc.dart';
 import 'package:mealicious/ui/latest_meals/bloc/bloc.dart';
 
 void initKiwi() {
@@ -15,5 +16,7 @@ void initKiwi() {
     ..registerFactory((c) => CategoriesDatasource(c.resolve()))
     ..registerFactory((c) => CategoriesRepository(c.resolve()))
     ..registerFactory((c) => LatestMealsBloc(c.resolve()))
+    ..registerInstance(FavoriteBloc)
     ..registerFactory((c) => CategoryBloc(c.resolve()));
+  kiwi.Container().silent = true;
 }

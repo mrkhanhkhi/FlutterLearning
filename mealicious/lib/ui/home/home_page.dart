@@ -5,6 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kiwi/kiwi.dart' as kiwi;
 import 'package:mealicious/common/centered_message.dart';
 import 'package:mealicious/ui/category/bloc/bloc.dart';
+import 'package:mealicious/ui/favorite/bloc/favorite_bloc.dart';
+import 'package:mealicious/ui/favorite/bloc/favorite_event.dart';
 import 'package:mealicious/ui/latest_meals/bloc/latest_meals_bloc.dart';
 import 'package:mealicious/ui/latest_meals/bloc/latest_meals_event.dart';
 import 'package:mealicious/ui/latest_meals/bloc/latest_meals_state.dart';
@@ -18,6 +20,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final _latestMealsBloc = kiwi.Container().resolve<LatestMealsBloc>();
   final _categoriesBloc = kiwi.Container().resolve<CategoryBloc>();
+
   @override
   void initState() {
     super.initState();
