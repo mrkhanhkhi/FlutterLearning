@@ -4,7 +4,9 @@ import 'package:meta/meta.dart';
 @immutable
 abstract class FavoriteState {}
 
-class InitialFavoriteState extends FavoriteState {}
+class InitialFavoriteState extends FavoriteState {
+  final List<MealDetail> favoriteMeals = [];
+}
 
 class FavoriteMealsLoading extends FavoriteState {}
 

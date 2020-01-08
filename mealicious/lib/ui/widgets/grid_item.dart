@@ -33,41 +33,21 @@ class GridItem extends StatelessWidget {
     final IconData icon = meal.isFavorite ? Icons.star : Icons.star_border;
 
     return Padding(
-        padding:
-            const EdgeInsets.only(left: 10.0, right: 10, bottom: 5, top: 5),
-        child: Container(
+      padding: const EdgeInsets.only(left: 10.0, right: 10, bottom: 5, top: 5),
+      child: Container(
           child: ClipRRect(
-            borderRadius: BorderRadius.circular(20.0),
-            child: BlocProvider(
-              create: (BuildContext context) => FavoriteBloc(),
-              child: BlocBuilder<FavoriteBloc, FavoriteState>(
-                  builder: (context, state) {
-                if (state is InitialFavoriteState) {
-                  return GridTile(
-                    footer: GestureDetector(
-                      onTap: () {
-                        onBannerTap(meal);
-                      },
-                      child: GridTileBar(
-                        backgroundColor: Colors.black45,
-                        title: _GridTitleText(meal.strMeal),
-                        subtitle: _GridTitleText(meal.strCategory),
-                        trailing: Icon(
-                          icon,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                    child: image(context),
-                  );
-                } else {
-                  return CenteredMessage(
-                      message: "Error", icon: Icons.error_outline);
-                }
-              }),
-            ),
-          ),
-        ));
+              borderRadius: BorderRadius.circular(20.0),
+              child: GridTile(
+                footer: GridTileBar(
+                  backgroundColor: Colors.black45,
+                  title: _GridTitleText(meal.strMeal),
+                  subtitle: _GridTitleText(meal.strCategory),
+                  trailing: FavoriteButton(
+                      onBannerTap: onBannerTap, meal: meal, icon: icon),
+                ),
+                child: image(context),
+              ))),
+    );
   }
 
   Widget image(context) => GestureDetector(
@@ -102,6 +82,36 @@ class GridItem extends StatelessWidget {
       ),
     );
     ;
+  }
+}
+
+class FavoriteButton extends StatelessWidget {
+  const FavoriteButton({
+    Key key,
+    @required this.onBannerTap,
+    @required this.meal,
+    @required this.icon,
+  }) : super(key: key);
+
+  final BannerTapCallback onBannerTap;
+  final MealDetail meal;
+  final IconData icon;
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<FavoriteBloc, FavoriteState>(builder: (context, state) {
+      if (state is FavoriteMealsLoaded) {
+        return GestureDetector(
+            onTap: () {
+              onBannerTap(meal);
+              BlocProvider.of<FavoriteBloc>(context).add(AddFavoriteMeal(meal));
+            },
+            child: Icon(
+              icon,
+              color: Colors.white,
+            ));
+      }
+    });
   }
 }
 
