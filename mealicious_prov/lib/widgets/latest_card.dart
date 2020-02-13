@@ -72,9 +72,10 @@ class LatestCard extends StatelessWidget {
             ),
           ),
         ),
-        Text(
-          'Film Title',
-          style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+        Expanded(
+          child: Text(meal.strMeal,
+              style: TextStyle(fontSize: 12.0, fontWeight: FontWeight.normal),
+              overflow: TextOverflow.fade),
         )
       ]),
     );
