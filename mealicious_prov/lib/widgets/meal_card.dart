@@ -1,6 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 import 'package:mealicious_prov/data/model/meal_model.dart';
+import 'package:mealicious_prov/providers/favorite_provider.dart';
+import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
 
 class MealCard extends StatelessWidget {
@@ -19,6 +22,7 @@ class MealCard extends StatelessWidget {
   final String authorTag = uuid.v4();
   @override
   Widget build(BuildContext context) {
+    var fav = Provider.of<FavoriteProvider>(context);
     return Container(
       width: 500,
       height: 350,
@@ -88,15 +92,19 @@ class MealCard extends StatelessWidget {
             right: 20.0,
             top: 15.0,
             child: IconButton(
-              onPressed: () async {
-                // if(detailsProvider.faved){
-                //   detailsProvider.removeFav();
-                // }else{
-                //   detailsProvider.addFav();
-                // }
-              },
-              icon: Icon(Icons.favorite, color: Colors.red),
-            ),
+                onPressed: () async {
+                  if (fav.faved) {
+                    fav.removeFav();
+                  } else {
+                    fav.addFav();
+                  }
+                },
+                icon: Icon(
+                  fav.faved ? Icons.favorite : Feather.heart,
+                  color: fav.faved
+                      ? Colors.red
+                      : Theme.of(context).iconTheme.color,
+                )),
           ),
         ],
       ),

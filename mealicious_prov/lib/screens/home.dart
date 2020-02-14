@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mealicious_prov/data/model/meal_model.dart';
 import 'package:mealicious_prov/providers/app_provider.dart';
+import 'package:mealicious_prov/providers/favorite_provider.dart';
 import 'package:mealicious_prov/providers/home_provider.dart';
 import 'package:mealicious_prov/widgets/latest_card.dart';
 import 'package:mealicious_prov/widgets/meal_card.dart';
@@ -9,9 +10,9 @@ import 'package:provider/provider.dart';
 class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var app = Provider.of<HomeProvider>(context);
+    var fav = Provider.of<FavoriteProvider>(context);
     return Consumer<HomeProvider>(
-      builder: (BuildContext context, app, Widget child) {
+      builder: (BuildContext context, HomeProvider homeProvider, Widget child) {
         return Scaffold(
             appBar: AppBar(
               centerTitle: true,
@@ -27,7 +28,10 @@ class Home extends StatelessWidget {
                     child: CircularProgressIndicator(),
                   )
                 : RefreshIndicator(
-                    onRefresh: () => homeProvider.getFeeds(),
+                    onRefresh: () {
+                      homeProvider.getFeeds();
+                      fav.getFeeds();
+                    },
                     child: ListView(
                       children: <Widget>[
                         Padding(
@@ -51,7 +55,7 @@ class Home extends StatelessWidget {
                             child: ListView.builder(
                               padding: EdgeInsets.symmetric(horizontal: 15),
                               scrollDirection: Axis.horizontal,
-                              itemCount: app.latest.meals.length,
+                              itemCount: homeProvider.latest.meals.length,
                               shrinkWrap: true,
                               itemBuilder: (BuildContext context, int index) {
                                 MealDetail entry =

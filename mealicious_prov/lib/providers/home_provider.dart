@@ -19,6 +19,7 @@ class HomeProvider with ChangeNotifier {
     Api.getLatestMeals(Api.latest).then((latest) {
       setLatest(latest);
       setLoading(false);
+      checkFav();
     }).catchError((e) {
       throw (e);
     });
@@ -28,11 +29,6 @@ class HomeProvider with ChangeNotifier {
     return loading;
   }
 
-  addFav() async {
-    await favDB.add({"id": meal.idMeal, "item": meal.toJson()});
-    checkFav();
-  }
-
   checkFav() async {
     List m = await favDB.check({"id": meal.idMeal});
     if (m.isNotEmpty) {
@@ -40,6 +36,18 @@ class HomeProvider with ChangeNotifier {
     } else {
       setFaved(false);
     }
+  }
+
+  addFav() async {
+    await favDB.add({"id": meal.idMeal, "item": meal.toJson()});
+    checkFav();
+  }
+
+  removeFav() async {
+    favDB.remove({"id": meal.idMeal}).then((v) {
+      print(v);
+      checkFav();
+    });
   }
 
   void setFaved(value) {
@@ -54,6 +62,11 @@ class HomeProvider with ChangeNotifier {
 
   void setLatest(value) {
     latest = value;
+    notifyListeners();
+  }
+
+  void setMeal(value) {
+    meal = value;
     notifyListeners();
   }
 
