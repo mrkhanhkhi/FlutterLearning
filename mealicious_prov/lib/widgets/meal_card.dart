@@ -1,8 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:mealicious_prov/data/model/meal_model.dart';
-import 'package:mealicious_prov/providers/favorite_provider.dart';
+import 'package:mealicious_prov/providers/detail_provider.dart';
+import 'package:mealicious_prov/screens/detail.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
 
@@ -22,7 +23,6 @@ class MealCard extends StatelessWidget {
   final String authorTag = uuid.v4();
   @override
   Widget build(BuildContext context) {
-    var fav = Provider.of<FavoriteProvider>(context);
     return Container(
       width: 500,
       height: 350,
@@ -40,20 +40,17 @@ class MealCard extends StatelessWidget {
                 Radius.circular(10),
               ),
               onTap: () {
-                // Provider.of<DetailsProvider>(context, listen: false).setEntry(entry);
-                // Provider.of<DetailsProvider>(context, listen: false).getFeed(entry.author.uri.t);
-                // Navigator.push(
-                //   context,
-                //   PageTransition(
-                //     type: PageTransitionType.rightToLeft,
-                //     child: Details(
-                //       entry: entry,
-                //       imgTag: imgTag,
-                //       titleTag: titleTag,
-                //       authorTag: authorTag,
-                //     ),
-                //   ),
-                // );
+                Provider.of<DetailsProvider>(context, listen: false)
+                    .setMeal(meal);
+                Provider.of<DetailsProvider>(context, listen: false).getFeeds();
+                Navigator.push(
+                  context,
+                  PageTransition(
+                      type: PageTransitionType.rightToLeft,
+                      child: MealDetails(
+                        meal: meal,
+                      )),
+                );
               },
               child: ClipRRect(
                 borderRadius: BorderRadius.all(
@@ -88,24 +85,24 @@ class MealCard extends StatelessWidget {
                     color: Colors.white),
                 overflow: TextOverflow.fade),
           ),
-          Positioned(
-            right: 20.0,
-            top: 15.0,
-            child: IconButton(
-                onPressed: () async {
-                  if (fav.faved) {
-                    fav.removeFav();
-                  } else {
-                    fav.addFav();
-                  }
-                },
-                icon: Icon(
-                  fav.faved ? Icons.favorite : Feather.heart,
-                  color: fav.faved
-                      ? Colors.red
-                      : Theme.of(context).iconTheme.color,
-                )),
-          ),
+          // Positioned(
+          //   right: 20.0,
+          //   top: 15.0,
+          //   child: IconButton(
+          //       onPressed: () async {
+          //         if (favedStatus) {
+          //           favoriteProvider.removeFav();
+          //         } else {
+          //           favoriteProvider.addFav();
+          //         }
+          //       },
+          //       icon: Icon(
+          //         favedStatus ? Icons.favorite : Feather.heart,
+          //         color: favedStatus
+          //             ? Colors.red
+          //             : Theme.of(context).iconTheme.color,
+          //       )),
+          // ),
         ],
       ),
     );

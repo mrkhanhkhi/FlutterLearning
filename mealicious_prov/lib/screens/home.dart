@@ -10,7 +10,6 @@ import 'package:provider/provider.dart';
 class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var fav = Provider.of<FavoriteProvider>(context);
     return Consumer<HomeProvider>(
       builder: (BuildContext context, HomeProvider homeProvider, Widget child) {
         return Scaffold(
@@ -30,7 +29,6 @@ class Home extends StatelessWidget {
                 : RefreshIndicator(
                     onRefresh: () {
                       homeProvider.getFeeds();
-                      fav.getFeeds();
                     },
                     child: ListView(
                       children: <Widget>[
@@ -96,13 +94,13 @@ class Home extends StatelessWidget {
                               itemCount: homeProvider.latest.meals.length,
                               shrinkWrap: true,
                               itemBuilder: (BuildContext context, int index) {
-                                MealDetail entry =
+                                MealDetail meal =
                                     homeProvider.latest.meals[index];
                                 return Padding(
                                   padding: EdgeInsets.fromLTRB(15, 15, 15, 15),
                                   child: MealCard(
-                                    img: entry.strMealThumb,
-                                    meal: entry,
+                                    img: meal.strMealThumb,
+                                    meal: meal,
                                   ),
                                 );
                               },
