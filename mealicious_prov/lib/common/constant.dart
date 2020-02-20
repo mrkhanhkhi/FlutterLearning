@@ -3,18 +3,23 @@ import 'dart:math';
 
 class Constants {
   //App related strings
-  static String appName = "Flutter Ebook App";
+
+  static Color hexToColor(String code) {
+    return new Color(int.parse(code.substring(1, 7), radix: 16) + 0xFF000000);
+  }
+
+  static String appName = "Mealicious";
 
   //Colors for theme
-  static Color lightPrimary = Colors.white;
+  static Color lightPrimary = Colors.blueGrey[50];
   static Color darkPrimary = Colors.black;
-  static Color lightAccent = Color(0xff06d6a7);
-  static Color darkAccent = Color(0xff06d6a7);
-  static Color lightBG = Colors.white;
+  static Color lightAccent = Colors.blueGrey[50];
+  static Color darkAccent = hexToColor('#4E7C00');
+  static Color lightBG = Colors.blueGrey[50];
   static Color darkBG = Colors.black;
 
   static ThemeData lightTheme = ThemeData(
-    fontFamily: "TimesNewRoman",
+    fontFamily: "Helvetica Neue",
     backgroundColor: lightBG,
     primaryColor: lightPrimary,
     accentColor: lightAccent,
@@ -24,7 +29,7 @@ class Constants {
       elevation: 0,
       textTheme: TextTheme(
         title: TextStyle(
-          fontFamily: "TimesNewRoman",
+          fontFamily: "Helvetica Neue",
           color: Colors.black,
           fontSize: 20,
           fontWeight: FontWeight.w800,
@@ -34,7 +39,7 @@ class Constants {
   );
 
   static ThemeData darkTheme = ThemeData(
-    fontFamily: "TimesNewRoman",
+    fontFamily: "Helvetica Neue",
     brightness: Brightness.dark,
     backgroundColor: darkBG,
     primaryColor: darkPrimary,
@@ -45,7 +50,7 @@ class Constants {
       elevation: 0,
       textTheme: TextTheme(
         title: TextStyle(
-          fontFamily: "TimesNewRoman",
+          fontFamily: "Helvetica Neue",
           color: lightBG,
           fontSize: 20,
           fontWeight: FontWeight.w800,
