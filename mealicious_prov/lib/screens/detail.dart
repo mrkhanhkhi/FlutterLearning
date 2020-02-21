@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 import 'package:mealicious_prov/data/model/meal_model.dart';
 import 'package:mealicious_prov/providers/detail_provider.dart';
 import 'package:provider/provider.dart';
@@ -17,18 +18,33 @@ class MealDetails extends StatelessWidget {
         body: CustomScrollView(
           slivers: <Widget>[
             SliverAppBar(
-              expandedHeight: 350.0,
-              floating: true,
-              pinned: false,
-              flexibleSpace: FlexibleSpaceBar(
-                title: null,
-                background: AspectRatio(
-                    aspectRatio: 16.0 / 9.0,
-                    child: CachedNetworkImage(
-                        imageUrl: meal.strMealThumb, fit: BoxFit.fill)),
-              ),
-              actions: null,
-            ),
+                expandedHeight: 350.0,
+                floating: true,
+                pinned: false,
+                flexibleSpace: FlexibleSpaceBar(
+                  title: null,
+                  background: AspectRatio(
+                      aspectRatio: 16.0 / 9.0,
+                      child: CachedNetworkImage(
+                          imageUrl: meal.strMealThumb, fit: BoxFit.fill)),
+                ),
+                actions: <Widget>[
+                  IconButton(
+                    onPressed: () async {
+                      if (detailProvider.faved) {
+                        detailProvider.removeFav();
+                      } else {
+                        detailProvider.addFav();
+                      }
+                    },
+                    icon: Icon(
+                      detailProvider.faved ? Icons.favorite : Feather.heart,
+                      color: detailProvider.faved
+                          ? Colors.red
+                          : Theme.of(context).iconTheme.color,
+                    ),
+                  ),
+                ]),
             SliverList(
               delegate: SliverChildListDelegate(
                 <Widget>[

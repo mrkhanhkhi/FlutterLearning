@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class Ingredients extends StatelessWidget {
-  String ingredient;
+  final String ingredient;
+  const Ingredients({Key key, this.ingredient}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -9,13 +10,11 @@ class Ingredients extends StatelessWidget {
       height: 60,
       child: Column(
         children: <Widget>[
-          new CheckboxListTile(
-              value: inputs[index],
-              title: new Text('item ${index}'),
-              controlAffinity: ListTileControlAffinity.leading,
-              onChanged: (bool val) {
-                ItemChange(val, index);
-              })
+          // new CheckboxListTile(
+          //     value: inputs[index],
+          //     title: Text(ingredient),
+          //     controlAffinity: ListTileControlAffinity.leading,
+          //     onChanged: (bool val) {})
         ],
       ),
     );

@@ -6,6 +6,8 @@ import 'package:mealicious_prov/common/constant.dart';
 import 'package:mealicious_prov/screens/home.dart';
 import 'package:mealicious_prov/widgets/custom_alert.dart';
 
+import 'favorite.dart';
+
 class MainScreen extends StatefulWidget {
   @override
   _MainScreenState createState() => _MainScreenState();
@@ -26,7 +28,7 @@ class _MainScreenState extends State<MainScreen> {
           onPageChanged: onPageChanged,
           children: <Widget>[
             Home(),
-            Home(),
+            Favorites(),
             Home(),
             Home(),
             // Explore(),

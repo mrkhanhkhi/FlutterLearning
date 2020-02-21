@@ -1,48 +1,51 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:mealicious_prov/data/database/favorite_db.dart';
-import 'package:mealicious_prov/data/model/category.dart';
-import 'package:mealicious_prov/data/model/latest_meal.dart';
-import 'package:mealicious_prov/data/model/meal_model.dart';
-import 'package:mealicious_prov/data/network/api.dart';
 
-class FavoriteProvider with ChangeNotifier {
-  MealDetail meal;
-  bool faved = false;
-  var favDB = FavoriteDB();
+class FavoritesProvider extends ChangeNotifier {
+  String message;
+  List posts = List();
+  bool loading = true;
+  var db = FavoriteDB();
 
-  getFeeds() async {
-    checkFav();
-  }
-
-  addFav() async {
-    await favDB.add({"id": meal.idMeal, "item": meal.toJson()});
-    print('added: ${meal.idMeal}');
-    checkFav();
-  }
-
-  checkFav() async {
-    List m = await favDB.check({"id": meal.idMeal});
-    if (m.isNotEmpty) {
-      setFaved(true);
-    } else {
-      setFaved(false);
-    }
-  }
-
-  removeFav() async {
-    favDB.remove({"id": meal.idMeal}).then((v) {
-      print(v);
-      checkFav();
+  getFeed() async {
+    setLoading(true);
+    posts.clear();
+    db.listAll().then((all) {
+      posts.addAll(all);
+      setLoading(false);
     });
   }
 
-  void setFaved(value) {
-    faved = value;
+  void setLoading(value) {
+    loading = value;
     notifyListeners();
   }
 
-  void setMeal(value) {
-    meal = value;
+  bool isLoading() {
+    return loading;
+  }
+
+  void setMessage(value) {
+    message = value;
+    Fluttertoast.showToast(
+      msg: value,
+      toastLength: Toast.LENGTH_SHORT,
+      timeInSecForIos: 1,
+    );
     notifyListeners();
+  }
+
+  String getMessage() {
+    return message;
+  }
+
+  void setPosts(value) {
+    posts = value;
+    notifyListeners();
+  }
+
+  List getPosts() {
+    return posts;
   }
 }

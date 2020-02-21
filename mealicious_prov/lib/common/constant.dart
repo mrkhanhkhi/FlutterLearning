@@ -13,7 +13,7 @@ class Constants {
   //Colors for theme
   static Color lightPrimary = Colors.blueGrey[50];
   static Color darkPrimary = Colors.black;
-  static Color lightAccent = Colors.blueGrey[50];
+  static Color lightAccent = hexToColor('#4E7C00');
   static Color darkAccent = hexToColor('#4E7C00');
   static Color lightBG = Colors.blueGrey[50];
   static Color darkBG = Colors.black;
