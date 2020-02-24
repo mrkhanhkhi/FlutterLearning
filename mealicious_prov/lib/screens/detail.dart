@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:mealicious_prov/data/model/meal_model.dart';
 import 'package:mealicious_prov/providers/detail_provider.dart';
+import 'package:mealicious_prov/providers/shopping_cart_provider.dart';
 import 'package:mealicious_prov/widgets/ingredients.dart';
 import 'package:provider/provider.dart';
 import 'package:random_color/random_color.dart';
@@ -37,28 +38,28 @@ class MealDetails extends StatelessWidget {
       meal.strIngredient20
     ].where((ingredient) => ingredient != null && ingredient != '').toList();
 
-    var measure = [
-      meal.strMeasure1,
-      meal.strMeasure2,
-      meal.strMeasure3,
-      meal.strMeasure4,
-      meal.strMeasure5,
-      meal.strMeasure6,
-      meal.strMeasure7,
-      meal.strMeasure8,
-      meal.strMeasure9,
-      meal.strMeasure10,
-      meal.strMeasure11,
-      meal.strMeasure12,
-      meal.strMeasure13,
-      meal.strMeasure14,
-      meal.strMeasure15,
-      meal.strMeasure16,
-      meal.strMeasure17,
-      meal.strMeasure18,
-      meal.strMeasure19,
-      meal.strMeasure20
-    ].where((measure) => measure != null && measure != '').toList();
+    // var measure = [
+    //   meal.strMeasure1,
+    //   meal.strMeasure2,
+    //   meal.strMeasure3,
+    //   meal.strMeasure4,
+    //   meal.strMeasure5,
+    //   meal.strMeasure6,
+    //   meal.strMeasure7,
+    //   meal.strMeasure8,
+    //   meal.strMeasure9,
+    //   meal.strMeasure10,
+    //   meal.strMeasure11,
+    //   meal.strMeasure12,
+    //   meal.strMeasure13,
+    //   meal.strMeasure14,
+    //   meal.strMeasure15,
+    //   meal.strMeasure16,
+    //   meal.strMeasure17,
+    //   meal.strMeasure18,
+    //   meal.strMeasure19,
+    //   meal.strMeasure20
+    // ].where((measure) => measure != null && measure != '').toList();
 
     return Consumer<DetailsProvider>(builder: (context, detailProvider, child) {
       return Scaffold(
@@ -187,10 +188,10 @@ class MealDetails extends StatelessWidget {
                                                   itemBuilder:
                                                       (BuildContext context,
                                                           int index) {
+                                                            Provider.of<ShoppingCartProvider>(context, listen: false).getFeeds();
+                                                            Provider.of<ShoppingCartProvider>(context, listen: false).checkCart();
                                                     if (ingredients[index] !=
-                                                            null ||
-                                                        ingredients[index] ==
-                                                            '') {
+                                                            null) {
                                                       return Card(
                                                         child: Container(
                                                           padding:
@@ -199,9 +200,7 @@ class MealDetails extends StatelessWidget {
                                                           child: Column(
                                                             children: <Widget>[
                                                               Ingredients(
-                                                                ingredient: measure[
-                                                                        index] +
-                                                                    ' ' +
+                                                                ingredient:
                                                                     ingredients[
                                                                         index],
                                                               )
@@ -209,7 +208,7 @@ class MealDetails extends StatelessWidget {
                                                           ),
                                                         ),
                                                       );
-                                                    }
+                                                    } else { return Container();}
                                                   }),
                                             )
                                           ],
