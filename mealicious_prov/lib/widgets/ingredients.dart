@@ -10,11 +10,11 @@ class Ingredients extends StatelessWidget {
       height: 60,
       child: Column(
         children: <Widget>[
-          // new CheckboxListTile(
-          //     value: inputs[index],
-          //     title: Text(ingredient),
-          //     controlAffinity: ListTileControlAffinity.leading,
-          //     onChanged: (bool val) {})
+          new CheckboxListTile(
+              value: true,
+              title: Text(ingredient),
+              controlAffinity: ListTileControlAffinity.leading,
+              onChanged: (bool val) {})
         ],
       ),
     );

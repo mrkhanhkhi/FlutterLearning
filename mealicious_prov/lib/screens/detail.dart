@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:mealicious_prov/data/model/meal_model.dart';
 import 'package:mealicious_prov/providers/detail_provider.dart';
+import 'package:mealicious_prov/widgets/ingredients.dart';
 import 'package:provider/provider.dart';
 import 'package:random_color/random_color.dart';
 
@@ -13,6 +14,52 @@ class MealDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var ingredients = [
+      meal.strIngredient1,
+      meal.strIngredient2,
+      meal.strIngredient3,
+      meal.strIngredient4,
+      meal.strIngredient5,
+      meal.strIngredient6,
+      meal.strIngredient7,
+      meal.strIngredient8,
+      meal.strIngredient9,
+      meal.strIngredient10,
+      meal.strIngredient11,
+      meal.strIngredient12,
+      meal.strIngredient13,
+      meal.strIngredient14,
+      meal.strIngredient15,
+      meal.strIngredient16,
+      meal.strIngredient17,
+      meal.strIngredient18,
+      meal.strIngredient19,
+      meal.strIngredient20
+    ].where((ingredient) => ingredient != null && ingredient != '').toList();
+
+    var measure = [
+      meal.strMeasure1,
+      meal.strMeasure2,
+      meal.strMeasure3,
+      meal.strMeasure4,
+      meal.strMeasure5,
+      meal.strMeasure6,
+      meal.strMeasure7,
+      meal.strMeasure8,
+      meal.strMeasure9,
+      meal.strMeasure10,
+      meal.strMeasure11,
+      meal.strMeasure12,
+      meal.strMeasure13,
+      meal.strMeasure14,
+      meal.strMeasure15,
+      meal.strMeasure16,
+      meal.strMeasure17,
+      meal.strMeasure18,
+      meal.strMeasure19,
+      meal.strMeasure20
+    ].where((measure) => measure != null && measure != '').toList();
+
     return Consumer<DetailsProvider>(builder: (context, detailProvider, child) {
       return Scaffold(
         body: CustomScrollView(
@@ -112,8 +159,7 @@ class MealDetails extends StatelessWidget {
                                         height: 10,
                                       ),
                                       Container(
-                                        width: 400,
-                                        height: 200,
+                                        height: 600,
                                         decoration: BoxDecoration(
                                             borderRadius:
                                                 BorderRadius.circular(10),
@@ -134,6 +180,37 @@ class MealDetails extends StatelessWidget {
                                                   ),
                                                 ),
                                               ),
+                                            ),
+                                            Expanded(
+                                              child: ListView.builder(
+                                                  itemCount: ingredients.length,
+                                                  itemBuilder:
+                                                      (BuildContext context,
+                                                          int index) {
+                                                    if (ingredients[index] !=
+                                                            null ||
+                                                        ingredients[index] ==
+                                                            '') {
+                                                      return Card(
+                                                        child: Container(
+                                                          padding:
+                                                              EdgeInsets.all(
+                                                                  10.0),
+                                                          child: Column(
+                                                            children: <Widget>[
+                                                              Ingredients(
+                                                                ingredient: measure[
+                                                                        index] +
+                                                                    ' ' +
+                                                                    ingredients[
+                                                                        index],
+                                                              )
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      );
+                                                    }
+                                                  }),
                                             )
                                           ],
                                         ),
