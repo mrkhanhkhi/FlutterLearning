@@ -62,6 +62,7 @@ class MealDetails extends StatelessWidget {
     // ].where((measure) => measure != null && measure != '').toList();
 
     return Consumer<DetailsProvider>(builder: (context, detailProvider, child) {
+      Provider.of<ShoppingCartProvider>(context, listen: false).getFeeds();
       return Scaffold(
         body: CustomScrollView(
           slivers: <Widget>[
@@ -108,126 +109,102 @@ class MealDetails extends StatelessWidget {
                   ),
                   Padding(
                       padding: EdgeInsets.all(10.0),
-                      child: Expanded(
-                        child: Container(
-                          child: Column(
-                            children: <Widget>[
-                              Padding(
-                                  padding: EdgeInsets.all(10.0),
-                                  child: Expanded(
-                                      child: Column(
+                      child: Column(
+                        children: <Widget>[
+                          Padding(
+                              padding: EdgeInsets.all(10.0),
+                              child: Column(
+                                children: <Widget>[
+                                  meal.strTags != null
+                                      ? Wrap(
+                                          spacing: 6.0,
+                                          runSpacing: 6.0,
+                                          children: meal.strTags
+                                              .split(',')
+                                              .map((String text) => ActionChip(
+                                                    backgroundColor:
+                                                        RandomColor()
+                                                            .randomColor(),
+                                                    label: Text(
+                                                      text,
+                                                      style: TextStyle(
+                                                        fontSize: 10,
+                                                        color: Colors.white,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                      ),
+                                                    ),
+                                                    onPressed: () {},
+                                                  ))
+                                              .toList(),
+                                        )
+                                      : Container(),
+                                  Container(
+                                    width: 500,
+                                    height: 70,
+                                    child: FlatButton(
+                                      color: Colors.red,
+                                      onPressed: () {},
+                                      child: Text(
+                                        "Watch Video",
+                                        style: TextStyle(
+                                            fontSize: 20.0,
+                                            color: Colors.white),
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Column(
                                     children: <Widget>[
-                                      meal.strTags != null
-                                          ? Wrap(
-                                              spacing: 6.0,
-                                              runSpacing: 6.0,
-                                              children: meal.strTags
-                                                  .split(',')
-                                                  .map((String text) =>
-                                                      ActionChip(
-                                                        backgroundColor:
-                                                            RandomColor()
-                                                                .randomColor(),
-                                                        label: Text(
-                                                          text,
-                                                          style: TextStyle(
-                                                            fontSize: 10,
-                                                            color: Colors.white,
-                                                            fontWeight:
-                                                                FontWeight.bold,
-                                                          ),
-                                                        ),
-                                                        onPressed: () {},
-                                                      ))
-                                                  .toList(),
-                                            )
-                                          : Container(),
-                                      Container(
-                                        width: 500,
-                                        height: 70,
-                                        child: FlatButton(
-                                          color: Colors.red,
-                                          onPressed: () {},
+                                      Padding(
+                                        padding: const EdgeInsets.fromLTRB(
+                                            10, 10, 20, 50),
+                                        child: Align(
+                                          alignment: Alignment(-1, 0),
                                           child: Text(
-                                            "Watch Video",
+                                            'Ingredients',
                                             style: TextStyle(
-                                                fontSize: 20.0,
-                                                color: Colors.white),
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold,
+                                            ),
                                           ),
                                         ),
                                       ),
-                                      SizedBox(
-                                        height: 10,
-                                      ),
-                                      Container(
-                                        height: 600,
-                                        decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                            color: Colors.white),
-                                        child: Column(
-                                          children: <Widget>[
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.fromLTRB(
-                                                      10, 10, 20, 50),
-                                              child: Align(
-                                                alignment: Alignment(-1, 0),
-                                                child: Text(
-                                                  'Ingredients',
-                                                  style: TextStyle(
-                                                    fontSize: 20,
-                                                    fontWeight: FontWeight.bold,
+                                      ListView.builder(
+                                          scrollDirection: Axis.vertical,
+                                          shrinkWrap: true,
+                                          itemCount: ingredients.length,
+                                          itemBuilder: (BuildContext context,
+                                              int index) {
+                  
+                                        // Provider.of<ShoppingCartProvider>(
+                                        //         context,
+                                        //         listen: false)
+                                        //     .setIngredient(
+                                        //         ingredients[index]);
+                                            if (ingredients[index] != null) {
+                                              return Card(
+                                                child: Container(
+                                                  padding:
+                                                      EdgeInsets.all(10.0),
+                                                  child: Ingredients(
+                                                    ingredient:
+                                                        ingredients[
+                                                            index],
                                                   ),
                                                 ),
-                                              ),
-                                            ),
-                                            Expanded(
-                                              child: ListView.builder(
-                                                  itemCount: ingredients.length,
-                                                  itemBuilder:
-                                                      (BuildContext context,
-                                                          int index) {
-                                                    Provider.of<ShoppingCartProvider>(
-                                                            context,
-                                                            listen: false)
-                                                        .setIngredient(
-                                                            ingredients[index]);
-                                                    Provider.of<ShoppingCartProvider>(
-                                                            context,
-                                                            listen: false)
-                                                        .getFeeds();
-                                                    if (ingredients[index] !=
-                                                        null) {
-                                                      return Card(
-                                                        child: Container(
-                                                          padding:
-                                                              EdgeInsets.all(
-                                                                  10.0),
-                                                          child: Column(
-                                                            children: <Widget>[
-                                                              Ingredients(
-                                                                ingredient:
-                                                                    ingredients[
-                                                                        index],
-                                                              )
-                                                            ],
-                                                          ),
-                                                        ),
-                                                      );
-                                                    } else {
-                                                      return Container();
-                                                    }
-                                                  }),
-                                            )
-                                          ],
-                                        ),
-                                      ),
+                                              );
+                                            } else {
+                                              return Container();
+                                            }
+                                          })
                                     ],
-                                  ))),
-                            ],
-                          ),
-                        ),
+                                  ),
+                                ],
+                              )),
+                        ],
                       )),
                 ],
               ),

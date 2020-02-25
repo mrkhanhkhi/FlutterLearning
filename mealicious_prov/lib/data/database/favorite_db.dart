@@ -58,7 +58,7 @@ class FavDB {
   Future<Database> get _db async => await AppDatabase.instance.database;
 
   Future check(MealDetail meal) async {
-    var finder = Finder(filter: Filter.byKey(meal.id));
+    var finder = Finder(filter: Filter.byKey(meal.idMeal));
     var record = await _favStore.find(await _db, finder: finder);
     if (record.isEmpty) {
       return false;
@@ -74,7 +74,7 @@ class FavDB {
   Future update(MealDetail meal) async {
     // For filtering by key (ID), RegEx, greater than, and many other criteria,
     // we use a Finder.
-    final finder = Finder(filter: Filter.byKey(meal.id));
+    final finder = Finder(filter: Filter.byKey(meal.idMeal));
     await _favStore.update(
       await _db,
       meal.toMap(),
@@ -83,7 +83,7 @@ class FavDB {
   }
 
   Future delete(MealDetail meal) async {
-    final finder = Finder(filter: Filter.byKey(meal.id));
+    final finder = Finder(filter: Filter.byKey(meal.idMeal));
     await _favStore.delete(
       await _db,
       finder: finder,
@@ -105,7 +105,8 @@ class FavDB {
     return recordSnapshots.map((snapshot) {
       final meal = MealDetail.fromMap(snapshot.value);
       // An ID is a key of a record from the database.
-      meal.id = snapshot.key;
+      var mealKey = meal.idMeal as int;
+      mealKey = snapshot.key;
       return meal;
     }).toList();
   }
