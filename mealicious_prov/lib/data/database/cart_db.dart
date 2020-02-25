@@ -6,14 +6,14 @@ import 'package:path_provider/path_provider.dart';
 class CartDB {
   getPath() async {
     Directory documentDirectory = await getApplicationDocumentsDirectory();
-    final path = documentDirectory.path + '/cart.db';
+    final path = documentDirectory.path + '/carts.db';
     return path;
   }
 
   //Insertion
   add(Map item) async {
     final db = ObjectDB(await getPath());
-    db.open();
+    db.open(false);
     db.insert(item);
     db.tidy();
     await db.close();
@@ -21,7 +21,7 @@ class CartDB {
 
   Future<int> remove(Map item) async {
     final db = ObjectDB(await getPath());
-    db.open();
+    db.open(false);
     int val = await db.remove(item);
     db.tidy();
     await db.close();
@@ -30,7 +30,7 @@ class CartDB {
 
   Future<List> listAll() async {
     final db = ObjectDB(await getPath());
-    db.open();
+    db.open(false);
     List val = await db.find({});
     db.tidy();
     await db.close();
@@ -39,9 +39,9 @@ class CartDB {
 
   Future<List> check(Map item) async {
     final db = ObjectDB(await getPath());
-    db.open();
+    db.open(false);
     List val = await db.find(item);
-    db.tidy();
+    // db.tidy();
     await db.close();
     return val;
   }

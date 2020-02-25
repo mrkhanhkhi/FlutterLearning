@@ -29,6 +29,7 @@ class Meals {
 }
 
 class MealDetail {
+  int id;
   String _idMeal;
   String _strMeal;
   String _strDrinkAlternate;
@@ -411,5 +412,117 @@ class MealDetail {
     data['strSource'] = this._strSource;
     data['dateModified'] = this._dateModified;
     return data;
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      "idMeal": idMeal,
+      "strMeal": strMeal,
+      "strDrinkAlternate": strDrinkAlternate,
+      "strCategory": strCategory,
+      "strArea": strArea,
+      "strInstructions": strInstructions,
+      "strMealThumb": strMealThumb,
+      "strTags": strTags,
+      "strYoutube": strYoutube,
+      "strIngredient1": strIngredient1,
+      "strIngredient2": strIngredient2,
+      "strIngredient3": strIngredient3,
+      "strIngredient4": strIngredient4,
+      "strIngredient5": strIngredient5,
+      "strIngredient6": strIngredient6,
+      "strIngredient7": strIngredient7,
+      "strIngredient8": strIngredient8,
+      "strIngredient9": strIngredient9,
+      "strIngredient10": strIngredient10,
+      "strIngredient11": strIngredient11,
+      "strIngredient12": strIngredient12,
+      "strIngredient13": strIngredient13,
+      "strIngredient14": strIngredient14,
+      "strIngredient15": strIngredient15,
+      "strIngredient16": strIngredient16,
+      "strIngredient17": strIngredient17,
+      "strIngredient18": strIngredient18,
+      "strIngredient19": strIngredient19,
+      "strIngredient20": strIngredient20,
+      "strMeasure1": strMeasure1,
+      "strMeasure2": strMeasure2,
+      "strMeasure3": strMeasure3,
+      "strMeasure4": strMeasure4,
+      "strMeasure5": strMeasure5,
+      "strMeasure6": strMeasure6,
+      "strMeasure7": strMeasure7,
+      "strMeasure8": strMeasure8,
+      "strMeasure9": strMeasure9,
+      "strMeasure10": strMeasure10,
+      "strMeasure11": strMeasure11,
+      "strMeasure12": strMeasure12,
+      "strMeasure13": strMeasure13,
+      "strMeasure14": strMeasure14,
+      "strMeasure15": strMeasure15,
+      "strMeasure16": strMeasure16,
+      "strMeasure17": strMeasure17,
+      "strMeasure18": strMeasure18,
+      "strMeasure19": strMeasure19,
+      "strMeasure20": strMeasure20,
+      "strSource": strSource,
+      "dateModified": dateModified
+    };
+  }
+
+  static MealDetail fromMap(Map<String, dynamic> map) {
+    return MealDetail(
+      idMeal: map['idMeal'],
+      strMeal: map['strMeal'],
+      strDrinkAlternate: map['strDrinkAlternate'],
+      strCategory: map['strCategory'],
+      strArea: map['strArea'],
+      strInstructions: map['strInstructions'],
+      strMealThumb: map['strMealThumb'],
+      strTags: map['strTags'],
+      strYoutube: map['strYoutube'],
+      strIngredient1: map['strIngredient1'],
+      strIngredient2: map['strIngredient2'],
+      strIngredient3: map['strIngredient3'],
+      strIngredient4: map['strIngredient4'],
+      strIngredient5: map['strIngredient5'],
+      strIngredient6: map['strIngredient6'],
+      strIngredient7: map['strIngredient7'],
+      strIngredient8: map['strIngredient8'],
+      strIngredient9: map['strIngredient9'],
+      strIngredient10: map['strIngredient10'],
+      strIngredient11: map['strIngredient11'],
+      strIngredient12: map['strIngredient12'],
+      strIngredient13: map['strIngredient13'],
+      strIngredient14: map['strIngredient14'],
+      strIngredient15: map['strIngredient15'],
+      strIngredient16: map['strIngredient16'],
+      strIngredient17: map['strIngredient17'],
+      strIngredient18: map['strIngredient18'],
+      strIngredient19: map['strIngredient19'],
+      strIngredient20: map['strIngredient20'],
+      strMeasure1: map['strMeasure1'],
+      strMeasure2: map['strMeasure2'],
+      strMeasure3: map['strMeasure3'],
+      strMeasure4: map['strMeasure4'],
+      strMeasure5: map['strMeasure5'],
+      strMeasure6: map['strMeasure6'],
+      strMeasure7: map['strMeasure7'],
+      strMeasure8: map['strMeasure8'],
+      strMeasure9: map['strMeasure9'],
+      strMeasure10: map['strMeasure10'],
+      strMeasure11: map['strMeasure11'],
+      strMeasure12: map['strMeasure12'],
+      strMeasure13: map['strMeasure13'],
+      strMeasure14: map['strMeasure14'],
+      strMeasure15: map['strMeasure15'],
+      strMeasure16: map['strMeasure16'],
+      strMeasure17: map['strMeasure17'],
+      strMeasure18: map['strMeasure18'],
+      strMeasure19: map['strMeasure19'],
+      strMeasure20: map['strMeasure20'],
+      strSource: map['strSource'],
+      dateModified: map['dateModified'],
+    );
   }
 }

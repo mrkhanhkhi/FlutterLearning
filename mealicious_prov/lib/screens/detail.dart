@@ -188,10 +188,17 @@ class MealDetails extends StatelessWidget {
                                                   itemBuilder:
                                                       (BuildContext context,
                                                           int index) {
-                                                            Provider.of<ShoppingCartProvider>(context, listen: false).getFeeds();
-                                                            Provider.of<ShoppingCartProvider>(context, listen: false).checkCart();
+                                                    Provider.of<ShoppingCartProvider>(
+                                                            context,
+                                                            listen: false)
+                                                        .setIngredient(
+                                                            ingredients[index]);
+                                                    Provider.of<ShoppingCartProvider>(
+                                                            context,
+                                                            listen: false)
+                                                        .getFeeds();
                                                     if (ingredients[index] !=
-                                                            null) {
+                                                        null) {
                                                       return Card(
                                                         child: Container(
                                                           padding:
@@ -208,7 +215,9 @@ class MealDetails extends StatelessWidget {
                                                           ),
                                                         ),
                                                       );
-                                                    } else { return Container();}
+                                                    } else {
+                                                      return Container();
+                                                    }
                                                   }),
                                             )
                                           ],

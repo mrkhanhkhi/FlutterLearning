@@ -8,15 +8,15 @@ import 'package:mealicious_prov/data/network/api.dart';
 class DetailsProvider with ChangeNotifier {
   MealDetail meal;
   bool faved = false;
-  var favDB = FavoriteDB();
+  var favDB = FavDB();
 
   getFeeds() async {
     checkFav();
   }
 
   checkFav() async {
-    List m = await favDB.check({"id": meal.idMeal});
-    if (m.isNotEmpty) {
+    var check = await favDB.check(meal);
+    if (check) {
       setFaved(true);
     } else {
       setFaved(false);
@@ -24,15 +24,13 @@ class DetailsProvider with ChangeNotifier {
   }
 
   addFav() async {
-    await favDB.add({"id": meal.idMeal, "item": meal.toJson()});
+    await favDB.insert(meal);
     checkFav();
   }
 
   removeFav() async {
-    favDB.remove({"id": meal.idMeal}).then((v) {
-      print(v);
-      checkFav();
-    });
+    favDB.delete(meal);
+    checkFav();
   }
 
   void setFaved(value) {

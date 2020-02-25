@@ -43,8 +43,8 @@ class ShoppingCartProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void setMeal(value) {
-    meal = value;
+  void setIngredient(value) {
+    ingredient = value;
     notifyListeners();
   }
 }
