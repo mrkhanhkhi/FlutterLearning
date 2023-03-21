@@ -29,7 +29,7 @@ dependencies:
   uuid: ^2.0.4
   objectdb: ^1.0.7+1
   path_provider: ^1.4.0
-  dio: ^3.0.8
+  dio: ">=3.0.8 <6.0.0"
   permission_handler: ^4.2.0+hotfix.1
   random_color: ^1.0.3
   sembast: ^2.2.0
